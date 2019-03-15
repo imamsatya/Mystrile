@@ -34,6 +34,7 @@
 <body>
     
     <div id="app">
+        asdasd
         <drawer-c>
             <template>
                 @yield('content')
