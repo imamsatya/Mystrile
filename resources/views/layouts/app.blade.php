@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet" type="text/css" >
 
     <!-- index.html -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Material+Icons" />
