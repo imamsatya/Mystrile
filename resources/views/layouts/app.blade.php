@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     
     <!-- Styles -->
-    <link type="text/css" rel="stylesheet"  src="{{ secure_asset('css/app.css') }}"  >
+    <link type="text/css" rel="stylesheet"  href="{{ asset('css/app.css') }}"  >
 
     <!-- index.html -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Material+Icons" />
@@ -51,7 +51,7 @@
     
     <!-- <script type="text/javascript" src="{{ asset('js/manifest.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/vendor.js') }}"></script> -->
-    <script  type="text/javascript"  src="{{ secure_asset('js/app.js') }}" ></script>
+    <script  type="text/javascript"  src="{{ asset('js/app.js') }}" ></script>
     <!-- <script src="/js/app.js"></script> -->
 </body>
 </html>
