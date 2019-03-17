@@ -36,5 +36,5 @@ Route::post('/home/beranda/{id}/jasa_konstruksi/create', 'AtributController@jasa
 
 
 Auth::routes();
-
+Route::view('/{path?}', 'app');
 // Route::get('/home', 'HomeController@index')->name('home');
