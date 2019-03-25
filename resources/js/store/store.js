@@ -14,10 +14,17 @@ const hargabarang = {
     state:{
         jenis_barang:'',
         kualitas_barang:'',
-        satuan_standar:false,
+        satuan_standar:'',
         merk:false,
+        satuansetempat:'',
+        panjang:false,
+        lebar: false,
+        tinggi: false,
+        berat: false,
+        konversi:false,
         harga_setempat:false,
         harga_standar:false,
+       
     }
 }
 

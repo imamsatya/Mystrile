@@ -89,32 +89,79 @@ class AtributController extends Controller
 
     public function harga_barang_store(Request $request, $id){
         
+        
+       
        $hargabarang = new HargaBarang;
        $hargabarang->jenis_barang = $request->input('hargabarang')['jenis_barang'];
        $hargabarang->kualitas_barang = $request->input('hargabarang')['kualitas_barang'];
+       
+       if ($request->input('hargabarang')['satuan_standar'] != NULL) {
+        $hargabarang->satuan_standar = $request->input('hargabarang')['satuan_standar'];
+       }else{
+        $hargabarang->satuan_standar = 'tanpa satuan standar';   
+       }
+       
        if ($request->input('hargabarang')['merk']) {
         $hargabarang->merk = 'bermerk';
        }else{
-        $hargabarang->merk = 'tidak bermerk';   
+        $hargabarang->merk = 'tanpa merk';   
        }
 
-       if ($request->input('hargabarang')['satuan_standar']) {
-        $hargabarang->satuan_standar = 'satuan standar';
+       if ($request->input('hargabarang')['satuansetempat'] != NULL) {
+        $hargabarang->satuan_setempat = $request->input('hargabarang')['satuansetempat'];
        }else{
-        $hargabarang->satuan_standar = 'tidak satuan standar';   
+        $hargabarang->satuan_setempat = 'tanpa satuan setempat';   
        }
+
+       //ukuran satuan setempat
+       if ($request->input('hargabarang')['panjang']) {
+        $hargabarang->panjang = 'panjang';
+       }else{
+        $hargabarang->panjang = 'tanpa panjang';   
+       }
+       
+
+       if ($request->input('hargabarang')['lebar']) {
+        $hargabarang->lebar = 'lebar';
+       }else{
+        $hargabarang->lebar = 'tanpa lebar';   
+       }
+       
+       if ($request->input('hargabarang')['tinggi']) {
+        $hargabarang->tinggi = 'tinggi';
+       }else{
+        $hargabarang->tinggi = 'tanpa tinggi';   
+       }
+
+       if ($request->input('hargabarang')['berat']) {
+        $hargabarang->berat = 'berat';
+       }else{
+        $hargabarang->berat = 'tanpa berat';   
+       }
+
+       if ($request->input('hargabarang')['konversi']) {
+        $hargabarang->konversi = 'konversi';
+       }else{
+        $hargabarang->konversi = 'tanpa konversi';   
+       }
+       
 
        if ($request->input('hargabarang')['harga_setempat']) {
-        $hargabarang->harga_satuan_setempat = 'harga_setempat';
+        $hargabarang->harga_satuan_setempat = 'harga satuan setempat';
        }else{
-        $hargabarang->harga_satuan_setempat = 'tidak harga_setempat';   
+        $hargabarang->harga_satuan_setempat = 'tanpa harga satuan setempat';   
        }
        
        if ($request->input('hargabarang')['harga_standar']) {
-        $hargabarang->harga_satuan_standar = 'harga_standar';
+        $hargabarang->harga_satuan_standar = 'harga satuan standar';
        }else{
-        $hargabarang->harga_satuan_standar = 'tidak harga_standar';   
+        $hargabarang->harga_satuan_standar = 'tanpa harga satuan standar';   
        }
+
+
+       
+
+
        $hargabarang->set_id = $id;
        $hargabarang->save();
 

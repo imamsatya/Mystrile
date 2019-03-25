@@ -19,6 +19,12 @@ class CreateHargaBarangsTable extends Migration
             $table->string('kualitas_barang')->nullable();
             $table->string('satuan_standar')->nullable();
             $table->string('merk')->nullable();
+            $table->string('satuan_setempat')->nullable();
+            $table->string('panjang')->nullable();
+            $table->string('lebar')->nullable();
+            $table->string('tinggi')->nullable();
+            $table->string('berat')->nullable();
+            $table->string('konversi')->nullable();
             $table->string('harga_satuan_setempat')->nullable();
             $table->string('harga_satuan_standar')->nullable();
             $table->timestamps();

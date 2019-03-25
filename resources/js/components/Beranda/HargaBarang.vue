@@ -23,6 +23,24 @@
         <vs-th style="font-size: 14px">
            Merk
         </vs-th>
+         <vs-th style="font-size: 14px">
+           Satuan Setempat
+        </vs-th>
+         <vs-th style="font-size: 14px">
+           Panjang
+        </vs-th>
+         <vs-th style="font-size: 14px">
+           Lebar
+        </vs-th>
+         <vs-th style="font-size: 14px">
+           Tinggi
+        </vs-th>
+         <vs-th style="font-size: 14px">
+           Berat
+        </vs-th>
+         <vs-th style="font-size: 14px">
+           Konversi
+        </vs-th>
         <vs-th style="font-size: 14px">
            Harga per Satuan Setempat
         </vs-th>
@@ -42,50 +60,71 @@
             {{data[indextr].jenis_barang}}
           </vs-td>
 
-          <vs-td :data="data[indextr].jenis_barang">
+          <vs-td :data="data[indextr].kualitas_barang">
             {{data[indextr].kualitas_barang}}
           </vs-td>
 
         <vs-td :data="data[indextr].satuan_standar">
           <label for="">{{data[indextr].satuan_standar}}</label>
-             <vs-switch color="success" disabled="true" v-model="switch3"/>
-                <!-- <v-flex xs4>
-                 <v-checkbox input-value="true" value disabled></v-checkbox>
-                </v-flex> -->
-                <!-- <label for="">disabled / active</label>
-      <vs-switch disabled="true" v-model="switch3"/> -->
+             <vs-switch color="success" v-if="data[indextr].satuan_standar != 'tanpa satuan standar'" disabled="true" v-model="switch3"/>
+             <vs-switch color="danger" v-if="data[indextr].satuan_standar == 'tanpa satuan standar'" disabled="true" v-model="switch3"/>
           </vs-td>
 
           <vs-td :data="data[indextr].merk">
             <label for="">{{data[indextr].merk}}</label>
-              <vs-switch color="success" disabled="true" v-model="switch3"/>
-              <!-- <v-checkbox input-value="true" value disabled></v-checkbox> -->
-
-              <!-- <vs-switch color="dark" vs-icon-on="check_box" vs-icon-off="block" v-model="switch5">
-      <span slot="on">YES</span>
-      <span slot="off">NO</span>
-    </vs-switch> -->
+              <vs-switch color="success" v-if="data[indextr].merk != 'tanpa merk'" disabled="true" v-model="switch3"/>
+             <vs-switch color="danger" v-if="data[indextr].merk == 'tanpa merk'" disabled="true" v-model="switch3"/>
           </vs-td>
 
+          <vs-td :data="data[indextr].satuan_setempat">
+          <label for="">{{data[indextr].satuan_setempat}}</label>
+             <vs-switch color="success" v-if="data[indextr].satuan_setempat != 'tanpa satuansetempat'" disabled="true" v-model="switch3"/>
+              <vs-switch color="danger" v-if="data[indextr].satuan_setempat == 'tanpa satuansetempat'" disabled="true" v-model="switch3"/>
+          </vs-td>
+
+          <vs-td :data="data[indextr].panjang">
+          <label for="">{{data[indextr].panjang}}</label>
+             <vs-switch color="success" v-if="data[indextr].panjang != 'tanpa panjang'" disabled="true" v-model="switch3"/>
+             <vs-switch color="danger" v-if="data[indextr].panjang == 'tanpa panjang'" disabled="true" v-model="switch3"/>   
+          </vs-td>
+
+           <vs-td :data="data[indextr].lebar">
+          <label for="">{{data[indextr].lebar}}</label>
+             <vs-switch color="success"  v-if="data[indextr].lebar != 'tanpa lebar'" disabled="true" v-model="switch3"/>
+               <vs-switch color="danger" v-if="data[indextr].lebar == 'tanpa lebar'" disabled="true" v-model="switch3"/>      
+          </vs-td>
+
+          <vs-td :data="data[indextr].tinggi">
+          <label for="">{{data[indextr].tinggi}}</label>
+             <vs-switch color="success"  v-if="data[indextr].tinggi != 'tanpa tinggi'" disabled="true" v-model="switch3"/>
+              <vs-switch color="danger" v-if="data[indextr].tinggi == 'tanpa tinggi'" disabled="true" v-model="switch3"/>  
+          </vs-td>
+
+          <vs-td :data="data[indextr].berat">
+          <label for="">{{data[indextr].berat}}</label>
+             <vs-switch color="success"  v-if="data[indextr].berat != 'tanpa berat'" disabled="true" v-model="switch3"/>
+              <vs-switch color="danger" v-if="data[indextr].berat == 'tanpa berat'" disabled="true" v-model="switch3"/>     
+          </vs-td>
+        
+        <vs-td :data="data[indextr].konversi">
+          <label for="">{{data[indextr].konversi}}</label>
+             <vs-switch color="success"  v-if="data[indextr].konversi != 'tanpa konversi'" disabled="true" v-model="switch3"/>
+              <vs-switch color="danger" v-if="data[indextr].konversi == 'tanpa konversi'" disabled="true" v-model="switch3"/>       
+          </vs-td>
+
+
          <vs-td :data="data[indextr].harga_satuan_setempat">
-              <!-- <v-checkbox input-value="true" value disabled></v-checkbox> -->
-               <!-- <vs-switch color="success" v-model="switch2" vs-icon="done"/> -->
-                 <!-- <label for="">{{data[indextr].website}}</label> -->
+              
                  <label for="">{{data[indextr].harga_satuan_setempat}}</label>
-                 <vs-switch disabled="true" v-model="switch3"/>
+                 <vs-switch  color="success" disabled="true"  v-if="data[indextr].harga_satuan_setempat != 'tanpa harga satuan setempat'" v-model="switch3"/>
+                  <vs-switch  color="danger" disabled="true"  v-if="data[indextr].harga_satuan_setempat == 'tanpa harga satuan setempat'" v-model="switch3"/>
           </vs-td>
 
           <vs-td :data="data[indextr].harga_satuan_standar">
               <label for="">{{data[indextr].harga_satuan_standar}}</label>
-              <vs-switch disabled="true" color="danger"  v-model="switch4"/>
-              <!-- <v-checkbox input-value="true" value disabled></v-checkbox> -->
-
-              <!-- <v-flex xs10>
-                 <v-checkbox input-value="true" value disabled></v-checkbox>
-                </v-flex> -->
-
-                <!-- <b-form-checkbox switch v-model="checked" name="check-button" >   
-    </b-form-checkbox> -->
+             <vs-switch  color="success" disabled="true"  v-if="data[indextr].harga_satuan_standar != 'tanpa harga satuan standar'" v-model="switch3"/>
+                  <vs-switch  color="danger" disabled="true"  v-if="data[indextr].harga_satuan_standar == 'tanpa harga satuan standar'" v-model="switch3"/>
+              
           </vs-td>
 
           
@@ -101,9 +140,16 @@
         </vs-tr>
       </template>
     </vs-table>
-    
+     <!-- edit -->
+        
+
+       
+     
+ 
   </div>
   
+ 
+    
 </template>
 
 <script>

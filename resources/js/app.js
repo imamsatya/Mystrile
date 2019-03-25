@@ -13,6 +13,12 @@ import Vuecidity from 'vuecidity'
 import 'vuecidity/dist/lib/vuecidity.min.css'
 Vue.use(Vuecidity)
 
+
+// import BootstrapVue from 'bootstrap-vue'
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
+// Vue.use(BootstrapVue)
+
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 Vue.use(VueMaterial)
@@ -53,6 +59,8 @@ import JasaKonstruksiCreate from './components/Create/JasaKonstruksiCreate.vue'
 import SewaAlatCreate from './components/Create/SewaAlatCreate.vue'
 import AtributCreate from './components/Create/AtributCreate.vue'
 
+//Update
+import HargaBarangUpdate from './components/Update/HargaBarangUpdate.vue'
 
 /**
  * 
