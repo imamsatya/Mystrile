@@ -12,14 +12,14 @@
 
     <!-- Scripts -->
     
-  
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
+    
     <!-- Styles -->
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    <link type="text/css" rel="stylesheet"  src="{{ asset('css/app.css') }}"  >
 
     <!-- index.html -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Material+Icons" />
@@ -48,8 +48,16 @@
 
         {{-- <footer-c></footer-c> --}}
     </div>
+<<<<<<< HEAD
 
     <script  type="text/javascript"  src="{{ mix('js/app.js') }}" ></script>
     {{-- <script src="/js/app.js"></script> --}}
+=======
+    
+    <!-- <script type="text/javascript" src="{{ asset('js/manifest.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/vendor.js') }}"></script> -->
+    <script  type="text/javascript"  src="{{ asset('js/app.js') }}" ></script>
+    <!-- <script src="/js/app.js"></script> -->
+>>>>>>> 68ba29a9d4d59aabf8d40180eb7975566ae3ebbf
 </body>
 </html>

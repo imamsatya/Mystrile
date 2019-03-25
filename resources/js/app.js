@@ -117,6 +117,10 @@ window.Vue.component('beranda-c', Beranda)
 
 const app = new Vue({
     el: '#app',
-    store
+    store,
+    render: h => h(App),
+        components: {
+            App
+        }
     
 });
