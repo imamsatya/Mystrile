@@ -60,7 +60,7 @@ import SewaAlatCreate from './components/Create/SewaAlatCreate.vue'
 import AtributCreate from './components/Create/AtributCreate.vue'
 
 //Update
-import HargaBarangUpdate from './components/Update/HargaBarangUpdate.vue'
+// import HargaBarangUpdate from './components/Update/HargabarangUpdate.vue'
 
 /**
  * 
@@ -118,9 +118,6 @@ window.Vue.component('beranda-c', Beranda)
 const app = new Vue({
     el: '#app',
     store,
-    render: h => h(App),
-        components: {
-            App
-        }
+    
     
 });

@@ -1,12 +1,5 @@
 {
     "private": true,
-<<<<<<< HEAD
-    "engines": {
-        "node": "11.5.0",
-        "npm": "6.6.0"
-    },
-=======
->>>>>>> 68ba29a9d4d59aabf8d40180eb7975566ae3ebbf
     "scripts": {
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",

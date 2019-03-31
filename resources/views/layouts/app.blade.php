@@ -48,16 +48,8 @@
 
         {{-- <footer-c></footer-c> --}}
     </div>
-<<<<<<< HEAD
 
-    <script  type="text/javascript"  src="{{ mix('js/app.js') }}" ></script>
-    {{-- <script src="/js/app.js"></script> --}}
-=======
-    
-    <!-- <script type="text/javascript" src="{{ asset('js/manifest.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/vendor.js') }}"></script> -->
     <script  type="text/javascript"  src="{{ asset('js/app.js') }}" ></script>
-    <!-- <script src="/js/app.js"></script> -->
->>>>>>> 68ba29a9d4d59aabf8d40180eb7975566ae3ebbf
+    {{-- <script src="/js/app.js"></script> --}}
 </body>
 </html>
