@@ -213,7 +213,7 @@ class AtributController extends Controller
 
         $id=$id;
      
-        return View('home.beranda', compact('hargabarangs', 'sewaalats', 'jasakonstruksis', 'id'));
+        return View('Home.beranda', compact('hargabarangs', 'sewaalats', 'jasakonstruksis', 'id'));
     }
 
     /**
