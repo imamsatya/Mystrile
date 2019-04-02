@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     
     <!-- Styles -->
-    <link type="text/css" rel="stylesheet"  src="{{ asset('PUBLIC/css/app.css') }}"  >
+    <link type="text/css" rel="stylesheet"  src="{{ asset('public/css/app.css') }}"  >
 
     <!-- index.html -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Material+Icons" />
@@ -49,7 +49,7 @@
         {{-- <footer-c></footer-c> --}}
     </div>
 
-    <script  type="text/javascript"  src="{{ asset('PUBLIC/js/app.js') }}" ></script>
+    <script  type="text/javascript"  src="{{ asset('public/js/app.js') }}" ></script>
     {{-- <script src="/js/app.js"></script> --}}
 </body>
 </html>
