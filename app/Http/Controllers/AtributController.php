@@ -211,9 +211,11 @@ class AtributController extends Controller
         $jasakonstruksi = new JasaKonstruksi;
         $jasakonstruksis = $jasakonstruksi->where('set_id', $id)->get();
 
+        $setatribut = new SetAtribut;
+        $setatributs = $setatribut->where('id', $id)->get();
         $id=$id;
      
-        return View('Home.beranda', compact('hargabarangs', 'sewaalats', 'jasakonstruksis', 'id'));
+        return View('Home.beranda', compact('hargabarangs', 'sewaalats', 'jasakonstruksis', 'id', 'setatributs'));
     }
 
     /**
@@ -248,5 +250,21 @@ class AtributController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function harga_barang_destroy($id)
+    {
+        $hargabarang = new HargaBarang;
+        $hargabarangs = $hargabarang->where('id', $id)->delete();
+
+        return redirect()->route('show');
+    }
+
+    public function sewa_alat_destroy($id)
+    {
+        $sewaalat = new SewaAlat;
+        $sewaalat = $sewaalat->where('id', $id)->delete();
+
+        return redirect()->route('show');
     }
 }

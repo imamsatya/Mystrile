@@ -32,6 +32,11 @@ const sewaalat={
     state:{
         jenis_barang:'',
         kualitas_barang:''
+    },
+    mutations:{
+        updateJenisBarang(state, jenis_barang){
+            state.jenis_barang = jenis_barang
+        }
     }
 }
 
@@ -55,6 +60,7 @@ export const store = new Vuex.Store({
     mutations:{
         LOADER(state,payload){
             state.loader = payload;
-        }
+        },
+        
     }
 })

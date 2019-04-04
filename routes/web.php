@@ -35,6 +35,17 @@ Route::get('/home/beranda/{id}/jasa_konstruksi/create', 'AtributController@jasa_
 Route::post('/home/beranda/{id}/jasa_konstruksi/create', 'AtributController@jasa_konstruksi_store')->name('jasa_konstruksi_create_post');
 
 
+//delete HargaBarang
+Route::delete('/home/beranda/{id}/harga_barang/delete', 'AtributController@harga_barang_destroy')->name('harga_barang_destroy');
+
+//delete Sewa Alat
+Route::delete('/home/beranda/{id}/sewa_alat/delete', 'AtributController@sewa_alat_destroy')->name('sewa_alat_destroy');
+
+
+
+//delete Jasa Konstruksi
+
+
 Auth::routes();
 Route::view('/{path?}', 'app');
 // Route::get('/home', 'HomeController@index')->name('home');
