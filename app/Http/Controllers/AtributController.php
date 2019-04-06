@@ -254,17 +254,40 @@ class AtributController extends Controller
 
     public function harga_barang_destroy($id)
     {
-        $hargabarang = new HargaBarang;
-        $hargabarangs = $hargabarang->where('id', $id)->delete();
+        $hargabarangs = new HargaBarang;
+        $hargabarang = $hargabarangs->where('id', $id)->delete();
 
-        return redirect()->route('show');
+        // return redirect()->route('show');
     }
 
     public function sewa_alat_destroy($id)
     {
-        $sewaalat = new SewaAlat;
-        $sewaalat = $sewaalat->where('id', $id)->delete();
+        $sewaalats = new SewaAlat;
+        $sewaalat = $sewaalats->where('id', $id)->delete();
 
-        return redirect()->route('show');
+        // return redirect()->route('show');
+        // return View('Atribut.atribut-c');
+    }
+
+    public function jasa_konstruksi_destroy($id)
+    {
+        $jasakonstruksis = new JasaKonstruksi;
+        $jasakonstruksi = $jasakonstruksis->where('id', $id)->delete();
+
+        // return redirect()->route('show');
+        // return View('Atribut.atribut-c');
+    }
+
+    public function sewa_alat_update(Request $request, $id){
+        
+        $sewaalats = new SewaAlat;
+        $sewaalat = $sewaalats->where('id', $id)->first();
+      
+        $sewaalat->jenis_barang = $request->jenis_barang;
+        $sewaalat->kualitas_barang = $request->kualitas_barang;
+
+      
+        $sewaalat->save();
+        
     }
 }
