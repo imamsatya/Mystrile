@@ -217,7 +217,7 @@
 
                     </vs-td>
 
-
+    
                 </vs-tr>
             </template>
         </vs-table>
