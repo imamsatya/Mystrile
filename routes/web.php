@@ -36,6 +36,8 @@ Route::post('/home/beranda/{id}/jasa_konstruksi/create', 'AtributController@jasa
 
 //update
 Route::post('/home/beranda/{id}/sewa_alat/update', 'AtributController@sewa_alat_update')->name('sewa_alat_update');
+Route::post('/home/beranda/{id}/jasa_konstruksi/update', 'AtributController@jasa_konstruksi_update')->name('jasa_konstruksi_update');
+
 
 
 //delete HargaBarang

@@ -32,11 +32,34 @@
 
           
 
-          <vs-td :data="data[indextr].username">
-           <vs-button color="primary" type="line" icon="visibility" size="small" href="/home/beranda"></vs-button>
-           <vs-button color="success" type="line" icon="create" size="small"></vs-button>
-           <vs-button color="warning" type="line" icon="launch" size="small"></vs-button>
+          <vs-td :data="data[indextr].id">
+           <!-- <vs-button color="primary" type="line" icon="visibility" size="small" href="/home/beranda"></vs-button> -->
+           <vs-button color="success" type="line" icon="create" size="small" @click="activePrompt2(indextr, data[indextr].id)"></vs-button>
+
+
+           <!-- <vs-button color="warning" type="line" icon="launch" size="small"></vs-button> -->
            <vs-button color="danger" type="line" icon="delete" size="small" @click="deleteRow(data[indextr].id, indextr, tr)"></vs-button>
+
+            <div>
+                            <div class="centerx con-exemple-prompt">
+                                <!-- :vs-is-valid="validName" -->
+
+                                <vs-prompt @vs-cancel="cancelForm"
+                                    @vs-accept="acceptAlert(data[indextr].id, indextr, data[indextr].jasa_konstruksi)"
+                                    @vs-close="close" :vs-is-valid="validName" :vs-active.sync="activePrompt2x"
+                                    vs-title="Edit Jasa Konstruksi" vs-accept-text="Update">
+
+                                    <div class="con-exemple-prompt">
+                                        <vs-input label="Jenis Barang" placeholder="Jenis Barang"
+                                            v-model="edited_value.jasa_konstruksi" name="jasa_konstruksi_new" />
+
+                                        <vs-alert :vs-active="!validName" color="danger" vs-icon="new_releases">
+                                            Fields can not be empty please enter the data
+                                        </vs-alert>
+                                    </div>
+                                </vs-prompt>
+                            </div>
+                        </div>
           </vs-td>
 
           
@@ -129,7 +152,24 @@ export default {
     switch4:false,
     switch2:true,
     datas_view:[],
+     datas_before_edit: '',
+
+    id_selected:'',
+    index_selected:'',
+    edited_value: {
+                jasa_konstruksi: '',
+                kualitas_barang: ''
+            },
+
+            activePrompt: false,
+            activePrompt2x: false,
   }),
+  computed: {
+            validName() {
+                return (this.edited_value.jasa_konstruksi.length > 0 )
+                // return (true)
+            },
+  },
   methods: {
      deleteRow(id, index, data) {
                 console.log(id)
@@ -168,9 +208,58 @@ export default {
                 // .then(response => this.datas.splice(index, 1));
 
             },
+             activePrompt2(index, id) {
+                
+                this.id_selected = id
+                this.index_selected = index
+                console.log(id, index, this.id_selected, this.index_selected)
+                this.activePrompt2x = true
+                this.edited_value.jasa_konstruksi = this.datas_view[index].jasa_konstruksi
+                
+            },
+            cancelForm() {
+                this.activePrompt2x = false
+                this.edited_value.jasa_konstruksi = ''
+              
+
+                Object.assign(this.datas_view, this.datas_before_edit)
+                // this.datas_view = Object.assign({}, this.datas_before_edit);
+
+                 this.$vs.notify({
+                    color: 'danger',
+                    title: 'Closed',
+                    text: '<div style="color:white">Ga jadi di edit!</div>'
+                })
+            },
+            acceptAlert(id, index, data) {
+                // var a = this.jasa_konstruksi_update(id, index, data)
+                // console.log();
+                
+                //  id index id_selected
+                 console.log(id, this.id_selected, index, this.index_selected);
+                this.datas_view[this.index_selected].jasa_konstruksi = this.edited_value.jasa_konstruksi
+                axios.post('/home/beranda/' + this.id_selected + '/jasa_konstruksi/update', this.edited_value)
+
+                this.$vs.notify({
+                    color: 'success',
+                    title: 'Updated !!!',
+                    text: '<div style="color:white">Data berhasil di update :) </div>',
+                })
+            },
+            close() {
+                this.$vs.notify({
+                    color: 'danger',
+                    title: 'Closed',
+                    text: '<div style="color:white">Ga jadi di edit!</div>'
+                })
+            },
   },
   beforeMount(){
            this.datas_view = this.datas
          },
+         mounted() {
+            this.datas_before_edit = Object.assign({}, this.datas)
+        },
+
 }
 </script>

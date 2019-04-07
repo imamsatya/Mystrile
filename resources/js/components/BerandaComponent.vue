@@ -125,28 +125,7 @@
 
 
         <!-- vuesax -->
-        <div>
-            <div class="centerx con-exemple-prompt">
-
-                <vs-button @click="activePrompt2 = true" color="primary" type="border">Run prompt inputs</vs-button>
-
-                <vs-prompt @vs-cancel="valMultipe.value1='',valMultipe.value2=''" @vs-accept="acceptAlert"
-                    @vs-close="close" :vs-is-valid="validName" :vs-active.sync="activePrompt2" vs-title="Edit Sewa Alat"
-                    vs-accept-text="Update">
-                    <div class="con-exemple-prompt">
-
-                        <vs-input label="Jenis Barang" placeholder="Jenis Barang" v-model="valMultipe.value1" />
-                        <vs-input label="Kualitas Barang" placeholder="Kualitas Barang" v-model="valMultipe.value2" />
-
-
-
-                        <vs-alert :vs-active="!validName" color="danger" vs-icon="new_releases">
-                            Fields can not be empty please enter the data
-                        </vs-alert>
-                    </div>
-                </vs-prompt>
-            </div>
-        </div>
+      
     </div>
 
 

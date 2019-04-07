@@ -35,43 +35,31 @@
                     </vs-td>
 
                     <vs-td :data="data[indextr].id">
-                        <vs-button color="primary" type="line" icon="visibility" size="small" href="/home/beranda/">
-                        </vs-button>
-                        <!-- edit -->
-                        <vs-button @click="activePrompt2 = true" color="success" type="line" icon="create" size="small">
-                        </vs-button>
-                        
-                        <vs-button color="warning" type="line" icon="launch" size="small"></vs-button>
-                        <!-- <vs-button color="danger" type="line" icon="delete" size="small" :href="'/home/beranda/'+data[indextr].id+'/sewa_alat/delete'" method="post"> -->
 
-                        <!-- :key="indextr"   v-for="(tr, indextr) in data" > -->
-                        <!-- <vs-button color="danger" type="line" icon="delete" size="small" @click="deleteRow(indextr, tr)"> -->
+                        
+                        <vs-button @click="activePrompt2(indextr, data[indextr].id)" color="success" type="line" icon="create"
+                            size="small">
+                        </vs-button>
+
+                        
                         <vs-button color="danger" type="line" icon="delete" size="small"
                             @click="deleteRow(data[indextr].id, indextr, tr)">
                         </vs-button>
                         <div>
                             <div class="centerx con-exemple-prompt">
                                 <!-- :vs-is-valid="validName" -->
-                                <!-- <vs-prompt @vs-cancel="valMultipe.value1='',valMultipe.value2=''" -->
-                                <vs-prompt @vs-cancel="edited_value.jenis_barang='', edited_value.kualitas_barang=''"
-                                    @vs-accept="acceptAlert(data[indextr].id, indextr, data[indextr].jenis_barang)" @vs-close="close"
-                                    :vs-is-valid="true" :vs-active.sync="activePrompt2 " vs-title="Edit Sewa Alat"
-                                    vs-accept-text="Update">
+
+                                <vs-prompt @vs-cancel="cancelForm"
+                                    @vs-accept="acceptAlert(data[indextr].id, indextr, data[indextr].jenis_barang)"
+                                    @vs-close="close" :vs-is-valid="validName" :vs-active.sync="activePrompt2x"
+                                    vs-title="Edit Sewa Alat" vs-accept-text="Update">
 
                                     <div class="con-exemple-prompt">
-
-                                        <!-- {{csrfToken()}} -->
-                                        <!-- <vs-input label="Jenis Barang" placeholder="Jenis Barang" :value="data[indextr].jenis_barang" @input="updateJenisBarang"  /> -->
                                         <vs-input label="Jenis Barang" placeholder="Jenis Barang"
-                                            v-model="data[indextr].jenis_barang" name="jenis_barang_new"
-                                            @input="jenis_barang_update(data[indextr].id, indextr, data[indextr].jenis_barang)" />
+                                            v-model="edited_value.jenis_barang" name="jenis_barang_new" />
+
                                         <vs-input label="Kualitas Barang" placeholder="Kualitas Barang"
-                                            v-model="data[indextr].kualitas_barang" name="kualitas_barang_new" />
-                                        <!-- v-model="jenisbarang_x" -->
-                                        <!-- <vs-input label="Kualitas Barang" placeholder="Kualitas Barang" /> -->
-
-
-
+                                            v-model="edited_value.kualitas_barang" name="kualitas_barang_new" />
 
                                         <vs-alert :vs-active="!validName" color="danger" vs-icon="new_releases">
                                             Fields can not be empty please enter the data
@@ -87,7 +75,7 @@
             </template>
         </vs-table>
 
-    <!-- {{this.datas[0].jenis_barang}} -->
+        <!-- {{this.datas[0].jenis_barang}} -->
     </div>
 </template>
 
@@ -103,17 +91,19 @@
             switch4: false,
             switch2: true,
             datas_view: [],
-            datas_before_edit:'',
+            datas_before_edit: '',
+            
             // edit
-
+            id_selected:'',
+            index_selected:'',
             dialog: false,
-            edited_value:{
-                jenis_barang:'',
-                kualitas_barang:''
+            edited_value: {
+                jenis_barang: '',
+                kualitas_barang: ''
             },
 
             activePrompt: false,
-            activePrompt2: false,
+            activePrompt2x: false,
             val: '',
             valMultipe: {
                 value1: '',
@@ -122,7 +112,7 @@
         }),
         computed: {
             validName() {
-                return (this.valMultipe.value1.length > 0 && this.valMultipe.value2.length > 0)
+                return (this.edited_value.jenis_barang.length > 0 && this.edited_value.kualitas_barang.length > 0)
             },
 
             jenisbarang_x: {
@@ -144,16 +134,36 @@
             }
         },
         methods: {
-            //     cancelForm() {
-            // Object.assign(this.datas_view, this.datas_before_edit)
-            // },
+            activePrompt2(index, id) {
+                
+                this.id_selected = id
+                this.index_selected = index
+                console.log(id, index, this.id_selected, this.index_selected)
+                this.activePrompt2x = true
+                this.edited_value.jenis_barang = this.datas_view[index].jenis_barang
+                this.edited_value.kualitas_barang = this.datas_view[index].kualitas_barang
+
+            },
+            cancelForm() {
+                this.activePrompt2x = false
+                this.edited_value.jenis_barang = ''
+                this.edited_value.kualitas_barang = ''
+
+                Object.assign(this.datas_view, this.datas_before_edit)
+                // this.datas_view = Object.assign({}, this.datas_before_edit);
+                this.$vs.notify({
+                    color: 'danger',
+                    title: 'Closed',
+                    text: '<div style="color:white">Ga jadi di edit!</div>'
+                })
+            },
             jenis_barang_update(id, index, data) {
                 var value = event.target.value;
                 const idx = this.datas_view.indexOf(data)
                 console.log(id, index)
-                // this.edited_value.jenis_barang = value
+                this.edited_value.jenis_barang = value
 
-                this.datas_view[index].jenis_barang = value;
+                // this.datas_view[index].jenis_barang = value;
                 // var a = value;
                 // return a;
 
@@ -163,19 +173,24 @@
             acceptAlert(id, index, data) {
                 // var a = this.jenis_barang_update(id, index, data)
                 // console.log();
-                axios.post('/home/beranda/' + id + '/sewa_alat/update',  this.datas_view[index])
+                
+                //  id index id_selected
+                 console.log(id, this.id_selected, index, this.index_selected);
+                this.datas_view[this.index_selected].jenis_barang = this.edited_value.jenis_barang
+                this.datas_view[this.index_selected].kualitas_barang = this.edited_value.kualitas_barang
+                axios.post('/home/beranda/' + this.id_selected + '/sewa_alat/update', this.edited_value)
 
                 this.$vs.notify({
                     color: 'success',
                     title: 'Updated !!!',
-                    text: 'Data berhasil di update :) ',
+                    text: '<div style="color:white">Data berhasil di update :) </div>',
                 })
             },
             close() {
                 this.$vs.notify({
                     color: 'danger',
                     title: 'Closed',
-                    text: 'You close a dialog!'
+                    text: '<div style="color:white">Ga jadi di edit!</div>'
                 })
             },
             updateJenisBarang(e) {
@@ -199,10 +214,7 @@
 
                         axios.delete('/home/beranda/' + id + '/sewa_alat/delete')
                             .then(this.datas_view.splice(index, 1));
-                        // .then(Vue.delete(this.datas, idx))
-                        // this.$emit('Deleted');
-
-
+    
                         if (result.value) {
                             Vue.swal(
                                 'Hilang!',
@@ -222,13 +234,14 @@
         beforeMount() {
             this.datas_view = this.datas
         },
-        // created() {
-        //     this.datas_before_edit = Object.assign({}, this.datas_view)
-        // },
+        mounted() {
+            this.datas_before_edit = Object.assign({}, this.datas)
+        },
 
     }
 
 </script>
+
 <style lang="stylus">
 .con-exemple-prompt
   padding 10px;

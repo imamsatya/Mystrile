@@ -279,15 +279,27 @@ class AtributController extends Controller
     }
 
     public function sewa_alat_update(Request $request, $id){
-        
+   
         $sewaalats = new SewaAlat;
         $sewaalat = $sewaalats->where('id', $id)->first();
+     
       
         $sewaalat->jenis_barang = $request->jenis_barang;
         $sewaalat->kualitas_barang = $request->kualitas_barang;
 
       
         $sewaalat->save();
+        
+    }
+
+    public function jasa_konstruksi_update(Request $request, $id){
+   
+        $jasakonstruksis = new JasaKonstruksi;
+        $jasakonstruksi = $jasakonstruksis->where('id', $id)->first();
+     
+      
+        $jasakonstruksi->jasa_konstruksi = $request->jasa_konstruksi;
+        $jasakonstruksi->save();
         
     }
 }
