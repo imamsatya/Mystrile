@@ -286,7 +286,8 @@ class AtributController extends Controller
         // return View('Atribut.atribut-c');
     }
 
-    public function atribut_update(Request $request, $id){
+    public function atribut_update(Request $request, $id)
+    {
    
         $atributs = new SetAtribut;
         $atribut = $atributs->where('id', $id)->first();
@@ -298,7 +299,8 @@ class AtributController extends Controller
         
     }
 
-    public function sewa_alat_update(Request $request, $id){
+    public function sewa_alat_update(Request $request, $id)
+    {
    
         $sewaalats = new SewaAlat;
         $sewaalat = $sewaalats->where('id', $id)->first();
@@ -312,7 +314,8 @@ class AtributController extends Controller
         
     }
 
-    public function jasa_konstruksi_update(Request $request, $id){
+    public function jasa_konstruksi_update(Request $request, $id)
+    {
    
         $jasakonstruksis = new JasaKonstruksi;
         $jasakonstruksi = $jasakonstruksis->where('id', $id)->first();
@@ -323,7 +326,8 @@ class AtributController extends Controller
         
     }
 
-    public function harga_barang_update(Request $request, $id){
+    public function harga_barang_update(Request $request, $id)
+    {
         // dd($request);
         $hargabarangs = new HargaBarang;
         $hargabarang = $hargabarangs->where('id', $id)->first();
@@ -401,7 +405,8 @@ class AtributController extends Controller
 
     }
 
-    public function masadit($id){
+    public function masadit($id)
+    {
         $setatributs = new SetAtribut;
         $setatribut = $setatributs->where('id', $id)->first();
 
@@ -417,4 +422,6 @@ class AtributController extends Controller
         return View('Home.tes', compact('hargabarang', 'sewaalat', 'jasakonstruksi', 'setatribut'));
         // return View()
     }
+
+    
 }
