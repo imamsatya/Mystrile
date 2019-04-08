@@ -252,6 +252,13 @@ class AtributController extends Controller
         //
     }
 
+    public function atribut_destroy($id)
+    {
+        $setatributs = new SetAtribut;
+        $setatribut = $setatributs->where('id', $id)->delete();
+
+    }
+
     public function harga_barang_destroy($id)
     {
         $hargabarangs = new HargaBarang;
@@ -269,6 +276,7 @@ class AtributController extends Controller
         // return View('Atribut.atribut-c');
     }
 
+    
     public function jasa_konstruksi_destroy($id)
     {
         $jasakonstruksis = new JasaKonstruksi;
@@ -276,6 +284,18 @@ class AtributController extends Controller
 
         // return redirect()->route('show');
         // return View('Atribut.atribut-c');
+    }
+
+    public function atribut_update(Request $request, $id){
+   
+        $atributs = new SetAtribut;
+        $atribut = $atributs->where('id', $id)->first();
+     
+      
+        $atribut->nama_set_atribut = $request->nama_set_atribut;
+             
+        $atribut->save();
+        
     }
 
     public function sewa_alat_update(Request $request, $id){
@@ -301,5 +321,83 @@ class AtributController extends Controller
         $jasakonstruksi->jasa_konstruksi = $request->jasa_konstruksi;
         $jasakonstruksi->save();
         
+    }
+
+    public function harga_barang_update(Request $request, $id){
+        // dd($request);
+        $hargabarangs = new HargaBarang;
+        $hargabarang = $hargabarangs->where('id', $id)->first();
+        
+        $hargabarang->jenis_barang = $request->jenis_barang;
+        $hargabarang->kualitas_barang = $request->kualitas_barang;
+
+        if ($request->satuan_standar != false) {
+           $hargabarang->satuan_standar = $request->satuan_standar;
+        } else {
+            $hargabarang->satuan_standar = 'tanpa satuan standar';
+        }
+
+        if ($request->merk) {
+            $hargabarang->merk = 'bermerk';
+        } else {
+            $hargabarang->merk = 'tanpa merk';
+        }
+
+        if ($request->satuan_setempat != false) {
+            $hargabarang->satuan_setempat = $request->satuan_setempat;
+        } else {
+            $hargabarang->satuan_setempat = 'tanpa satuan setempat';
+        }
+        
+        if ($request->panjang) {
+            $hargabarang->panjang = 'panjang';
+        } else {
+            $hargabarang->panjang = 'tanpa panjang';
+        }
+
+        if ($request->lebar) {
+            $hargabarang->lebar = 'lebar';
+        } else {
+            $hargabarang->lebar = 'tanpa lebar';
+        }
+
+        if ($request->tinggi) {
+            $hargabarang->tinggi = 'tinggi';
+        } else {
+            $hargabarang->tinggi = 'tanpa tinggi';
+        }
+
+        if ($request->berat) {
+            $hargabarang->berat = 'berat';
+        } else {
+            $hargabarang->berat = 'tanpa berat';
+        }
+
+        if ($request->konversi) {
+            $hargabarang->konversi = 'konversi';
+        } else {
+            $hargabarang->konversi = 'tanpa konversi';
+        }
+
+        if ($request->harga_satuan_setempat) {
+            $hargabarang->harga_satuan_setempat = 'harga satuan setempat';
+        } else {
+            $hargabarang->harga_satuan_setempat = 'tanpa harga satuan setempat';
+        }
+
+        if ($request->harga_satuan_standar) {
+            $hargabarang->harga_satuan_standar = 'harga satuan standar';
+        } else {
+            $hargabarang->harga_satuan_standar = 'tanpa harga satuan standar';
+        }
+
+        
+        $hargabarang->save();
+
+
+        
+        
+        
+
     }
 }

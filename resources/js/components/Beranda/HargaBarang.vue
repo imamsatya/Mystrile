@@ -83,9 +83,9 @@
 
                     <vs-td :data="data[indextr].satuan_setempat">
                         <label for="">{{data[indextr].satuan_setempat}}</label>
-                        <vs-switch color="success" v-if="data[indextr].satuan_setempat != 'tanpa satuansetempat'"
+                        <vs-switch color="success" v-if="data[indextr].satuan_setempat != 'tanpa satuan setempat'"
                             disabled="true" v-model="switch3" />
-                        <vs-switch color="danger" v-if="data[indextr].satuan_setempat == 'tanpa satuansetempat'"
+                        <vs-switch color="danger" v-if="data[indextr].satuan_setempat == 'tanpa satuan setempat'"
                             disabled="true" v-model="switch3" />
                     </vs-td>
 
@@ -165,66 +165,120 @@
                             <div class="centerx con-exemple-prompt">
                                 <!-- :vs-is-valid="validName" -->
 
-                                <vs-prompt @vs-cancel="cancelForm"
+                                <!-- <vs-prompt @vs-cancel="cancelForm"
                                     @vs-accept="acceptAlert(data[indextr].id, indextr, data[indextr].jenis_barang)"
                                     @vs-close="close" :vs-is-valid="validName" :vs-active.sync="activePrompt2x"
                                     vs-title="Edit Sewa Alat" vs-accept-text="Update">
 
                                     <div class="con-exemple-prompt">
-                                        <vs-input label="Jenis Barang" placeholder="Jenis Barang"
-                                            v-model="edited_value.jenis_barang" name="jenis_barang_new" />
-
-                                        <vs-input label="Kualitas Barang" placeholder="Kualitas Barang"
-                                            v-model="edited_value.kualitas_barang" name="kualitas_barang_new" />
-
-                                           <vs-input label="Jenis Barang" placeholder="Jenis Barang"
-                                            v-model="edited_value.jenis_barang" name="jenis_barang_new" />
-
-                                        <vs-input label="Kualitas Barang" placeholder="Kualitas Barang"
-                                            v-model="edited_value.kualitas_barang" name="kualitas_barang_new" />
-
-                                             <vs-input label="Jenis Barang" placeholder="Jenis Barang"
-                                            v-model="edited_value.jenis_barang" name="jenis_barang_new" />
-
-                                        <vs-input label="Kualitas Barang" placeholder="Kualitas Barang"
-                                            v-model="edited_value.kualitas_barang" name="kualitas_barang_new" />
-
-                                             <vs-input label="Jenis Barang" placeholder="Jenis Barang"
-                                            v-model="edited_value.jenis_barang" name="jenis_barang_new" />
-
-                                        <vs-input label="Kualitas Barang" placeholder="Kualitas Barang"
-                                            v-model="edited_value.kualitas_barang" name="kualitas_barang_new" />
-
-                                             <vs-input label="Jenis Barang" placeholder="Jenis Barang"
-                                            v-model="edited_value.jenis_barang" name="jenis_barang_new" />
-
-                                        <vs-input label="Kualitas Barang" placeholder="Kualitas Barang"
-                                            v-model="edited_value.kualitas_barang" name="kualitas_barang_new" />
-
-                                             <vs-input label="Jenis Barang" placeholder="Jenis Barang"
-                                            v-model="edited_value.jenis_barang" name="jenis_barang_new" />
-
-                                        <vs-input label="Kualitas Barang" placeholder="Kualitas Barang"
-                                            v-model="edited_value.kualitas_barang" name="kualitas_barang_new" />
-
-                                        <vs-alert :vs-active="!validName" color="danger" vs-icon="new_releases">
-                                            Fields can not be empty please enter the data
-                                        </vs-alert>
+                                       
                                     </div>
-                                </vs-prompt>
+                                </vs-prompt> -->
+
+                                <!-- popup -->
+                                <vs-popup title="Edit Harga Barang" :active.sync="activePrompt2x"
+                                    style="color:rgb(25,112,255)" @vs-close="close">
+                                   
+                                    <v-app style="padding-left: 30px">
+                                        <form v-on:submit.prevent="submit(data[indextr].id, indextr)">
+
+
+
+                                            <v-text-field v-model="edited_value.jenis_barang" v-validate="'required'"
+                                                :error-messages="errors.collect('jenisbarang')" label="Jenis Barang"
+                                                data-vv-name="jenisbarang" required></v-text-field>
+
+                                            <v-text-field v-model="edited_value.kualitas_barang" v-validate="'required'"
+                                                :error-messages="errors.collect('kualitasbarang')"
+                                                label="Kualitas Barang" data-vv-name="kualitasbarang" required>
+                                            </v-text-field>
+
+                                            <v-checkbox v-model="satuanstandar_t" input-value="true" value color="blue"
+                                                :error-messages="errors.collect('satuanstandar')" label="Satuan Standar"
+                                                type="checkbox" class="ma-0 pa-0"></v-checkbox>
+
+                                            <v-text-field style="padding-left: 30px;" v-if="satuanstandar_t == true"
+                                                v-model="edited_value.satuan_standar" v-validate="'required'"
+                                                :error-messages="errors.collect('satuanstandar')" label="Satuan Standar"
+                                                data-vv-name="satuanstandar" class="ma-0" required></v-text-field>
+
+
+                                            <v-checkbox color="blue" v-model="edited_value.merk" input-value="true"
+                                                value label="Merk" type="checkbox" class="ma-0 pa-0"></v-checkbox>
+
+
+                                            <v-checkbox v-model="satuansetempat_t" color="blue"
+                                                :error-messages="errors.collect('satuansetempat')" input-value="true"
+                                                value label="Satuan setempat (buah, truk, dus, zak, lemar, rol, dll)"
+                                                type="checkbox" class="ma-0 pa-0"></v-checkbox>
+
+                                            <v-text-field style="padding-left: 30px;" v-if="satuansetempat_t == true"
+                                                v-model="edited_value.satuan_setempat" v-validate="'required'"
+                                                :error-messages="errors.collect('satuansetempat')"
+                                                label="Satuan Setempat" data-vv-name="satuansetempat" class="ma-0"
+                                                required></v-text-field>
+
+
+                                            <!-- ukuran satuan setempat -->
+                                            <vs-list style="padding-left: 20px">
+                                                <vs-list-header title="Ukuran Satuan Setempat" style="font-size: 12px;">
+                                                </vs-list-header>
+
+                                                <v-checkbox v-model="edited_value.panjang" color="blue"
+                                                    input-value="true" value label="Panjang (m)" type="checkbox"
+                                                    class="ma-0 pa-0"></v-checkbox>
+
+                                                <v-checkbox v-model="edited_value.lebar" color="blue" input-value="true"
+                                                    value label="Lebar (m)" type="checkbox" class="ma-0 pa-0">
+                                                </v-checkbox>
+
+                                                <v-checkbox v-model="edited_value.tinggi" color="blue"
+                                                    input-value="true" value label="Tinggi (m)" type="checkbox"
+                                                    class="ma-0 pa-0"></v-checkbox>
+
+                                                <v-checkbox v-model="edited_value.berat" color="blue" input-value="true"
+                                                    value label="Berat (kg)" type="checkbox" class="ma-0 pa-0">
+                                                </v-checkbox>
+                                            </vs-list>
+                                            <hr>
+                                            <br>
+
+
+
+
+                                            <!-- ukuran satuan setempat -->
+                                            <v-checkbox v-model="edited_value.konversi" color="blue" input-value="true"
+                                                value label="Konversi Satuan Setempat ke Satuan Standar" type="checkbox"
+                                                class="ma-0 pa-0"></v-checkbox>
+
+                                            <v-checkbox v-model="edited_value.harga_satuan_setempat" color="blue"
+                                                input-value="true" value label="Harga per Satuan Setempat (Rp)"
+                                                type="checkbox" class="ma-0 pa-0"></v-checkbox>
+                                            <v-checkbox v-model="edited_value.harga_satuan_standar" color="blue"
+                                                input-value="true" value label="Harga per Satuan Standar (Rp)"
+                                                type="checkbox" class="ma-0 pa-0"></v-checkbox>
+
+                                            <vs-button style="width: 70px" type="gradient" >Update
+                                            </vs-button>
+                                            <!-- <vs-button style="width: 70px" type="gradient">clear</vs-button> -->
+
+                                            <!-- <v-btn @click="submit" color="success">submit</v-btn>
+                            <v-btn @click="clear" color="info">clear</v-btn> -->
+                                        </form>
+                                    </v-app>
+                                </vs-popup>
                             </div>
                         </div>
 
                     </vs-td>
 
-    
+
                 </vs-tr>
             </template>
         </vs-table>
         <!-- edit -->
 
-
-
+       
 
 
     </div>
@@ -234,12 +288,25 @@
 </template>
 
 <script>
+    import Vue from 'vue'
+    import VeeValidate from 'vee-validate'
+
+    Vue.use(VeeValidate)
     export default {
+        $_veeValidate: {
+            validator: 'new'
+        },
         props: ['datas', 'id'],
         data: () => ({
 
+            //coba edit
+            dialogm1: '',
+            dialog: false,
+
             colorz: '#D81B60',
             // hargabarangs: this.datas,
+            satuanstandar_t: null,
+            satuansetempat_t: null,
 
             checkBox3: true,
             switch3: true,
@@ -256,11 +323,54 @@
             dialog: false,
             edited_value: {
                 jenis_barang: '',
-                kualitas_barang: ''
+                kualitas_barang: '',
+                satuan_standar: '',
+                merk: '',
+                satuan_setempat: '',
+                panjang: '',
+                lebar: '',
+                tinggi: '',
+                berat: '',
+                konversi: '',
+                harga_satuan_setempat: '',
+                harga_satuan_standar: '',
             },
 
             activePrompt: false,
             activePrompt2x: false,
+
+            dictionary: {
+                attributes: {
+                    email: 'E-mail Address'
+                    // custom attributes
+                },
+                custom: {
+                    jenisbarang: {
+                        required: () => 'Jenis Barang tidak boleh kosong',
+                        max: 'The name field may not be greater than 10 characters'
+                        // custom messages
+                    },
+                    kualitasbarang: {
+                        required: () => 'Kualitas Barang tidak boleh kosong',
+                        max: 'The name field may not be greater than 10 characters'
+                        // custom messages
+                    },
+                    satuanstandar: {
+                        required: () => 'Satuan Standar tidak boleh kosong',
+                        max: 'The name field may not be greater than 10 characters'
+                        // custom messages
+                    },
+                    satuansetempat: {
+                        required: () => 'Satuan Setempat tidak boleh kosong',
+                        max: 'The name field may not be greater than 10 characters'
+                        // custom messages
+                    },
+
+                    select: {
+                        required: 'Select field is required'
+                    }
+                }
+            }
 
         }),
         computed: {
@@ -270,6 +380,13 @@
         },
 
         methods: {
+            close() {
+                this.$vs.notify({
+                    color: 'danger',
+                    title: 'Closed',
+                    text: '<div style="color:white">Ga jadi di edit!</div>'
+                })
+            },
             deleteRow(id, index, data) {
                 console.log(id)
                 Vue.swal({
@@ -313,8 +430,75 @@
                 this.index_selected = index
                 console.log(id, index, this.id_selected, this.index_selected)
                 this.activePrompt2x = true
+
                 this.edited_value.jenis_barang = this.datas_view[index].jenis_barang
                 this.edited_value.kualitas_barang = this.datas_view[index].kualitas_barang
+
+                if (this.datas_view[index].satuan_standar != 'tanpa satuan standar') {
+                    this.satuanstandar_t = true
+                    this.edited_value.satuan_standar = this.datas_view[index].satuan_standar
+                } else {
+                    this.satuanstandar_t = false
+                    this.edited_value.satuan_standar = ''
+                }
+
+                if (this.datas_view[index].merk != 'tanpa merk') {
+                    this.edited_value.merk = true
+                } else {
+                    this.edited_value.merk = false
+                }
+
+
+                if (this.datas_view[index].satuan_setempat != 'tanpa satuan setempat') {
+                    this.satuansetempat_t = true
+                    this.edited_value.satuan_setempat = this.datas_view[index].satuan_setempat
+                } else {
+                    this.satuansetempat_t = false
+                    this.edited_value.satuan_setempat = ''
+                }
+
+
+                if (this.datas_view[index].panjang != 'tanpa panjang') {
+                    this.edited_value.panjang = true
+                } else {
+                    this.edited_value.panjang = false
+                }
+
+                if (this.datas_view[index].lebar != 'tanpa lebar') {
+                    this.edited_value.lebar = true
+                } else {
+                    this.edited_value.lebar = false
+                }
+
+                if (this.datas_view[index].tinggi != 'tanpa tinggi') {
+                    this.edited_value.tinggi = true
+                } else {
+                    this.edited_value.tinggi = false
+                }
+
+                if (this.datas_view[index].berat != 'tanpa berat') {
+                    this.edited_value.berat = true
+                } else {
+                    this.edited_value.berat = false
+                }
+
+                if (this.datas_view[index].konversi != 'tanpa konversi') {
+                    this.edited_value.konversi = true
+                } else {
+                    this.edited_value.konversi = false
+                }
+
+                if (this.datas_view[index].harga_satuan_setempat != 'tanpa harga satuan setempat') {
+                    this.edited_value.harga_satuan_setempat = true
+                } else {
+                    this.edited_value.harga_satuan_setempat = false
+                }
+
+                if (this.datas_view[index].harga_satuan_standar != 'tanpa harga satuan standar') {
+                    this.edited_value.harga_satuan_standar = true
+                } else {
+                    this.edited_value.harga_satuan_standar = false
+                }
 
             },
             cancelForm() {
@@ -330,35 +514,121 @@
                     text: '<div style="color:white">Ga jadi di edit!</div>'
                 })
             },
-            acceptAlert(id, index, data) {
+            submit(id, index) {
                 // var a = this.jenis_barang_update(id, index, data)
                 // console.log();
 
                 //  id index id_selected
+
                 console.log(id, this.id_selected, index, this.index_selected);
                 this.datas_view[this.index_selected].jenis_barang = this.edited_value.jenis_barang
                 this.datas_view[this.index_selected].kualitas_barang = this.edited_value.kualitas_barang
-                axios.post('/home/beranda/' + this.id_selected + '/sewa_alat/update', this.edited_value)
 
-                this.$vs.notify({
-                    color: 'success',
-                    title: 'Updated !!!',
-                    text: '<div style="color:white">Data berhasil di update :) </div>',
-                })
+                if (this.satuanstandar_t == true) {
+                    this.datas_view[this.index_selected].satuan_standar = this.edited_value.satuan_standar
+                } else {
+                    this.datas_view[this.index_selected].satuan_standar = 'tanpa satuan standar'
+                    this.edited_value.satuan_standar = false
+                }
+
+                if (this.edited_value.merk) {
+                    this.datas_view[this.index_selected].merk = 'bermerk'
+                } else {
+                    this.datas_view[this.index_selected].merk = 'tanpa merk'
+                }
+
+
+                // this.datas_view[this.index_selected].merk = this.edited_value.merk
+                if (this.satuansetempat_t == true) {
+                    this.datas_view[this.index_selected].satuan_setempat = this.edited_value.satuan_setempat
+                } else {
+                    this.datas_view[this.index_selected].satuan_setempat = 'tanpa satuan setempat'
+                    this.edited_value.satuan_setempat = false
+                }
+
+                if (this.edited_value.panjang) {
+                    this.datas_view[this.index_selected].panjang = 'panjang'
+                } else {
+                    this.datas_view[this.index_selected].panjang = 'tanpa panjang'
+                }
+
+                if (this.edited_value.lebar) {
+                    this.datas_view[this.index_selected].lebar = 'lebar'
+                } else {
+                    this.datas_view[this.index_selected].lebar = 'tanpa lebar'
+                }
+
+                if (this.edited_value.tinggi) {
+                    this.datas_view[this.index_selected].tinggi = 'tinggi'
+                } else {
+                    this.datas_view[this.index_selected].tinggi = 'tanpa tinggi'
+                }
+
+                if (this.edited_value.berat) {
+                    this.datas_view[this.index_selected].berat = 'berat'
+                } else {
+                    this.datas_view[this.index_selected].berat = 'tanpa berat'
+                }
+
+                if (this.edited_value.konversi) {
+                    this.datas_view[this.index_selected].konversi = 'konversi'
+                } else {
+                    this.datas_view[this.index_selected].konversi = 'tanpa konversi'
+                }
+
+                if (this.edited_value.harga_satuan_setempat) {
+                    this.datas_view[this.index_selected].harga_satuan_setempat = 'harga satuan setempat'
+                } else {
+                    this.datas_view[this.index_selected].harga_satuan_setempat = 'tanpa harga satuan setempat'
+                }
+
+                if (this.edited_value.harga_satuan_standar) {
+                    this.datas_view[this.index_selected].harga_satuan_standar = 'harga satuan standar'
+                } else {
+                    this.datas_view[this.index_selected].harga_satuan_standar = 'tanpa harga satuan standar'
+                }
+
+
+                this.$validator.validate().then(result => {
+                    if (!result) {
+                        // do stuff if not valid.
+                        Vue.swal(
+                            'Oops..',
+                            'Ada error :(',
+                            'error',
+                        );
+                    } else {
+                        var _this = this
+                        axios.post('/home/beranda/' + this.id_selected + '/harga_barang/update', this
+                                .edited_value)
+
+                            .then(function () {
+                                this.$vs.notify({
+                                    color: 'success',
+                                    title: 'Updated !!!',
+                                    text: '<div style="color:white">Data berhasil di update :) </div>',
+                                })
+                            });
+                    }
+                });
+
+
+
+
+
+
+
+
+                this.activePrompt2x = false;
             },
-            close() {
-                this.$vs.notify({
-                    color: 'danger',
-                    title: 'Closed',
-                    text: '<div style="color:white">Ga jadi di edit!</div>'
-                })
-            },
+
         },
 
         beforeMount() {
             this.datas_view = this.datas
         },
         mounted() {
+            this.$validator.localize('en', this.dictionary)
             this.datas_before_edit = Object.assign({}, this.datas)
         },
 

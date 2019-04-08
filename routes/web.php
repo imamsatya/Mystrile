@@ -35,10 +35,14 @@ Route::get('/home/beranda/{id}/jasa_konstruksi/create', 'AtributController@jasa_
 Route::post('/home/beranda/{id}/jasa_konstruksi/create', 'AtributController@jasa_konstruksi_store')->name('jasa_konstruksi_create_post');
 
 //update
+Route::post('/home/atribut/{id}/update', 'AtributController@atribut_update')->name('atribut_update');
+Route::post('/home/beranda/{id}/harga_barang/update', 'AtributController@harga_barang_update')->name('harga_barang_update');
 Route::post('/home/beranda/{id}/sewa_alat/update', 'AtributController@sewa_alat_update')->name('sewa_alat_update');
 Route::post('/home/beranda/{id}/jasa_konstruksi/update', 'AtributController@jasa_konstruksi_update')->name('jasa_konstruksi_update');
 
 
+//delete atribut
+Route::delete('/home/atribut/{id}/delete', 'AtributController@atribut_destroy')->name('atribut_destroy');
 
 //delete HargaBarang
 Route::delete('/home/beranda/{id}/harga_barang/delete', 'AtributController@harga_barang_destroy')->name('harga_barang_destroy');
