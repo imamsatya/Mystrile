@@ -50,9 +50,14 @@ Route::delete('/home/beranda/{id}/harga_barang/delete', 'AtributController@harga
 //delete Sewa Alat
 Route::delete('/home/beranda/{id}/sewa_alat/delete', 'AtributController@sewa_alat_destroy')->name('sewa_alat_destroy');
 
+
+
+//tes
+Route::get('/home/{id}', 'AtributController@masadit')->name('masadit');
 //delete Jasa Konstruksi
 Route::delete('/home/beranda/{id}/jasa_konstruksi/delete', 'AtributController@jasa_konstruksi_destroy')->name('sewa_alat_destroy');
 
 Auth::routes();
 Route::view('/{path?}', 'app');
 // Route::get('/home', 'HomeController@index')->name('home');
+

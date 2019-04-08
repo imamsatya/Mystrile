@@ -400,4 +400,21 @@ class AtributController extends Controller
         
 
     }
+
+    public function masadit($id){
+        $setatributs = new SetAtribut;
+        $setatribut = $setatributs->where('id', $id)->first();
+
+        $sewaalats = new SewaAlat;
+        $sewaalat = $sewaalats->where('set_id', $id)->first();
+
+        $jasakonstruksis = new JasaKonstruksi;
+        $jasakonstruksi = $jasakonstruksis->where('set_id', $id)->first();
+
+        $hargabarangs = new HargaBarang;
+        $hargabarang = $hargabarangs->where('set_id', $id)->first();
+
+        return View('Home.tes', compact('hargabarang', 'sewaalat', 'jasakonstruksi', 'setatribut'));
+        // return View()
+    }
 }

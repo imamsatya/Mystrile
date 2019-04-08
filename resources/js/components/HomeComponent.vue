@@ -66,7 +66,7 @@
                                 <vs-td :data="data[indextr].id">
                                     <vs-button color="primary" type="line" icon="visibility" size="small" :href="'/home/beranda/'+data[indextr].id"></vs-button>
                                     <vs-button color="success" type="line" icon="create" size="small" @click="activePrompt2(indextr, data[indextr].id)"></vs-button>
-                                    <vs-button color="warning" type="line" icon="launch" size="small"></vs-button>
+                                    <vs-button color="warning" type="line" icon="launch" size="small" :href="'/home/'+data[indextr].id"></vs-button>
                                     <vs-button color="danger" type="line" icon="delete" size="small"
                                     @click="deleteRow(data[indextr].id, indextr, tr)"
                                     ></vs-button>
@@ -78,7 +78,7 @@
                                 <vs-prompt @vs-cancel="cancelForm"
                                     @vs-accept="acceptAlert(data[indextr].id, indextr, data[indextr].jenis_barang)"
                                     @vs-close="close" :vs-is-valid="validName" :vs-active.sync="activePrompt2x"
-                                    vs-title="Edit Sewa Alat" vs-accept-text="Update">
+                                    vs-title="Edit Set Atribut" vs-accept-text="Update">
 
                                     <div class="con-exemple-prompt">
                                         <vs-input label="Nama Set Atribut" placeholder="Nama set atribut"
