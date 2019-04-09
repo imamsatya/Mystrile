@@ -33,7 +33,7 @@
             <span class="md-list-item-text"> <a href="/home">Home</a></span>
           </md-list-item>
 
-          <md-list-item md-expand>
+          <!-- <md-list-item md-expand>
             <md-icon>videogame_asset</md-icon>
             <span class="md-list-item-text">Games</span>
 
@@ -42,16 +42,16 @@
               <md-list-item class="md-inset"><a href="">Console</a></md-list-item>
               <md-list-item class="md-inset"><a href="">Console</a></md-list-item>
             </md-list>
-          </md-list-item>
+          </md-list-item> -->
 
-          <md-list-item>
+          <!-- <md-list-item>
             <md-icon>delete</md-icon>
             <span class="md-list-item-text">Trash</span>
-          </md-list-item>
+          </md-list-item> -->
 
           <md-list-item>
             <md-icon>error</md-icon>
-            <span class="md-list-item-text">Spam</span>
+            <span class="md-list-item-text">About</span>
           </md-list-item>
         </md-list>
       </md-app-drawer>
