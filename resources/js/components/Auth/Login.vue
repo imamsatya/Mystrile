@@ -1,10 +1,13 @@
 <template>
-    <v-app style="background-image:url('https://colorlib.com/etc/lf/Login_v4/images/bg-01.jpg');
+    <!-- <v-app style="background-image:url('https://colorlib.com/etc/lf/Login_v4/images/bg-01.jpg'); -->
+    <!-- <v-app style="
+    
     background-repeat: no-repeat;
     background-position: center;
   
   background-size: cover;
-    ">
+    "> -->
+    <v-app id="a">
 
         <v-container bg fill-height grid-list-md>
             <v-layout row wrap align-center>
@@ -97,5 +100,61 @@
 
 
 <style>
+#a {
+	width: 100wh;
+	height: 90vh;
+	color: #fff;
+	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+	background-size: 400% 400%;
+	-webkit-animation: Gradient 15s ease infinite;
+	-moz-animation: Gradient 15s ease infinite;
+	animation: Gradient 15s ease infinite;
+}
 
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+h1,
+h6 {
+	font-family: 'Open Sans';
+	font-weight: 300;
+	text-align: center;
+	position: absolute;
+	top: 45%;
+	right: 0;
+	left: 0;
+}
 </style>
