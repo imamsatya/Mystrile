@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Auth1.login');
 });
 
 Route::get('/home', 'AtributController@index')->name('home');

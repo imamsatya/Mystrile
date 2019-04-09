@@ -39,6 +39,10 @@ import { store } from './store/store'
 // Vue.use(BootstrapVue)
 
 
+//Auth
+import Login from './components/Auth/Login.vue'
+
+
 //UI
 import Drawer from './components/UI/Drawer.vue'
 
@@ -87,9 +91,16 @@ window.Vue = require('vue')
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
+
+
+
+
+
 //UI
 window.Vue.component('drawer-c', Drawer)
 
+//Auth
+window.Vue.component('login-c', Login)
 
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default)
