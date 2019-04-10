@@ -10,6 +10,7 @@
 
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
     <title> Mystrile </title>
+    <link rel="shortcut icon" href="{{ asset('MystrileV1_1.png') }}">
 
     <!-- Scripts -->
     

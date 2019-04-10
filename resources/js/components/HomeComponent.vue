@@ -77,7 +77,7 @@
 
                                 <vs-prompt @vs-cancel="cancelForm"
                                     @vs-accept="acceptAlert(data[indextr].id, indextr, data[indextr].jenis_barang)"
-                                    @vs-close="close" :vs-is-valid="validName" :vs-active.sync="activePrompt2x"
+                                     :vs-is-valid="validName" :vs-active.sync="activePrompt2x"
                                     vs-title="Edit Set Atribut" vs-accept-text="Update">
 
                                     <div class="con-exemple-prompt">
@@ -115,7 +115,8 @@
            index_selected:'',
            edited_value:{
                nama_set_atribut:''
-           }
+           },
+           activePrompt2x:false,
         }),
         computed:{
             validName() {
