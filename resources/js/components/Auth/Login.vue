@@ -52,17 +52,17 @@
                                 <!-- <v-form style="padding-left: 30px"> -->
                                 <v-form>
                                     <v-text-field prepend-icon="person" name="login" label="Username" type="text"
-                                        v-model="username">
+                                        v-model="username" :error-messages="errors.collect('username')" data-vv-name="username" required v-validate="'required'">
                                     </v-text-field>
                                     <v-text-field prepend-icon="lock" name="password" label="Password" id="password"
-                                        type="password" v-model="password"></v-text-field>
+                                        type="password" v-model="password" :error-messages="errors.collect('password')" data-vv-name="password" required v-validate="'required'"></v-text-field>
                                 </v-form>
 
                                 <br>
                                 <br>
                                 <!-- <vs-button style="width: 70px" type="gradient" >Update
                                             </vs-button> -->
-                                <vs-button style="width: 70px" type="gradient" color="danger" href="/home">Login
+                                <vs-button style="width: 70px" type="gradient" color="danger" @click="login">Login
                                 </vs-button>
                                 <br>
                                 <br>
@@ -85,15 +85,74 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import VeeValidate from 'vee-validate'
+
+    Vue.use(VeeValidate)
     export default {
+         $_veeValidate: {
+            validator: 'new'
+        },
         data: () => ({
             colorx: 'warning',
             colory: 'dark',
             colorz: '#D81B60',
             value7: '',
             username: '',
-            password: ''
+            password: '',
+            dictionary: {
+                attributes: {
+                    email: 'E-mail Address'
+                    // custom attributes
+                },
+                custom: {
+                    username: {
+                        required: () => 'Username tidak boleh kosong',
+                        max: 'The name field may not be greater than 10 characters'
+                        // custom messages
+                    },
+                    password: {
+                        required: () => 'Password tidak boleh kosong',
+                        max: 'The name field may not be greater than 10 characters'
+                        // custom messages
+                    },
+                    satuanstandar: {
+                        required: () => 'Satuan Standar tidak boleh kosong',
+                        max: 'The name field may not be greater than 10 characters'
+                        // custom messages
+                    },
+                    satuansetempat: {
+                        required: () => 'Satuan Setempat tidak boleh kosong',
+                        max: 'The name field may not be greater than 10 characters'
+                        // custom messages
+                    },
+
+                    select: {
+                        required: 'Select field is required'
+                    }
+                }
+            }
         }),
+        mounted() {
+            this.$validator.localize('en', this.dictionary)
+        },
+        methods:{
+         login() {
+                this.seen = true;
+                this.$store.state.loader = true;
+                this.$validator.validate().then(result => {
+                    if (!result) {
+                        // do stuff if not valid.
+                        Vue.swal(
+                            'Oops..',
+                            'Ada error :(',
+                            'error',
+                        );
+                    }
+
+                });
+         }
+         }
     }
 
 </script>
