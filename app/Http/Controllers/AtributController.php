@@ -7,6 +7,13 @@ use App\HargaBarang;
 use App\SewaAlat;
 use App\JasaKonstruksi;
 use App\SetAtribut;
+use App\User;
+
+use App\Classes\CommunityBPS;
+use DOMDocument;
+
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class AtributController extends Controller
 {
@@ -15,11 +22,62 @@ class AtributController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $username;
+    
+
+    public function cek(Request $request)
+    {
+         require "classes/communitybps.php";
+        // $communitybps = new CommunityBPS('bps7206', 'olimas205');
+
+         $communitybps = new CommunityBPS($request->input('account')['username'], $request->input('account')['password']);
+
+         //ini ga bisa
+        
+        //  $this->username->save();
+        
+        
+        // $user = new User;
+        // $user->name = 'Imam';
+        // $user->email = $request->input('account')['username'] . '@bps.go.id';        
+        // $user->email_verified_at = now();
+        // $user->password =  Hash::make($request->input('account')['password']);
+        // $user->remember_token = Str::random(10);
+        // $user->save();
+
+
+        $this->username = $request->input('account')['username'];
+        
+        // dd($user);
+        dd($request->input('account')['username']);
+        dd($this->username);
+      
+        
+        //  return true;
+         
+
+         
+    }
     public function index()
     {
         //salah tempat cuy
         $setatribut = new SetAtribut;
         $setatributs = $setatribut->get();
+
+        // require "classes/communitybps.php";
+        // For Windows, if anybody is interested, uncomment the following line (by removing the ;) from php.ini
+        // ;extension=php_curl.dll
+        // $communitybps = new CommunityBPS('bps7206', 'olimas205');
+  
+ 
+        //bisa
+        //getprofil
+        // $a= $communitybps->getprofil($communitybps);
+        // 340058779
+        // dd($a['nama']);
+        // dd($communitybps->username);
+        $a = $this->username;
+        dd($a);
 
         return View('home', compact('setatributs'));
     }

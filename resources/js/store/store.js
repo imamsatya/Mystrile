@@ -3,7 +3,12 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-
+const account = {
+    state:{
+        username:'',
+        password:'',
+    }
+}
 const setatribut = {
     state:{
         nama_atribut:'',
@@ -52,7 +57,8 @@ export const store = new Vuex.Store({
         setatribut: setatribut,
         hargabarang: hargabarang,
         sewaalat: sewaalat,
-        jasakonstruksi: jasakonstruksi
+        jasakonstruksi: jasakonstruksi,
+        account: account,
     },
     state:{
         loader:false

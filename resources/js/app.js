@@ -27,6 +27,9 @@ Vue.use(VueMaterial)
 import VueSweetalert2 from 'vue-sweetalert2'; 
 Vue.use(VueSweetalert2);
 
+import VueResource from 'vue-resource';
+Vue.use(VueResource)
+
 window.axios = require('axios');
 
 
@@ -126,8 +129,23 @@ window.Vue.component('beranda-c', Beranda)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+//  import Router from './routes.js'
+ import Auth from './pacakages/auth/Auth.js'
+ Vue.use(Auth)
+//  Router.beforeEach(
+//      (to, from, next) => {
+//          if(to.matched.some(record=> record.meta.forVisitors)){
+//              if(Vue.auth.isAuthenticated()){
+//                  next({
+//                      path: '/home'
+//                  })
+//              }else next()
+//          }else next()
+//      }
+//  )
 const app = new Vue({
     el: '#app',
+    // router: Router,
     store,
     
     

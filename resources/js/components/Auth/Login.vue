@@ -52,17 +52,17 @@
                                 <!-- <v-form style="padding-left: 30px"> -->
                                 <v-form>
                                     <v-text-field prepend-icon="person" name="login" label="Username" type="text"
-                                        v-model="username" :error-messages="errors.collect('username')" data-vv-name="username" required v-validate="'required'">
+                                        v-model="username_x" :error-messages="errors.collect('username')" data-vv-name="username" required v-validate="'required'">
                                     </v-text-field>
                                     <v-text-field prepend-icon="lock" name="password" label="Password" id="password"
-                                        type="password" v-model="password" :error-messages="errors.collect('password')" data-vv-name="password" required v-validate="'required'"></v-text-field>
+                                        type="password" v-model="password_x" :error-messages="errors.collect('password')" data-vv-name="password" required v-validate="'required'"></v-text-field>
                                 </v-form>
 
                                 <br>
                                 <br>
                                 <!-- <vs-button style="width: 70px" type="gradient" >Update
                                             </vs-button> -->
-                                <vs-button style="width: 70px" type="gradient" color="danger" @click="login">Login
+                                <vs-button style="width: 70px" type="gradient" color="danger" @click="test">Login
                                 </vs-button>
                                 <br>
                                 <br>
@@ -148,10 +148,79 @@ import VeeValidate from 'vee-validate'
                             'Ada error :(',
                             'error',
                         );
+                    }else{
+                        //  axios.get('/home')
+                        window.location.href = "/home";
                     }
 
                 });
+         },
+         test (){
+             var data={
+                 client_id:2 ,
+                 client_secret:'LqqSO1BC8JjwRViYYppXDgZ42qh9wH2Ow0ZLSCyA',
+                 grant_type:'password',
+                 username: this.username_x,
+                 password: this.password_x,
+             }
+             var x= 1;
+            
+            
+            if (axios.post('/cek',{
+                                account: this.$store.state.account,
+                            })
+                            ) {
+                console.log(true)
+              this.$http.post('/oauth/token', data)
+              .then(function (response){
+                 this.$auth.setToken(response.body.access_token, response.body.expires_in = Date.now())
+                 console.log(response)
+             })
+               .then(
+                //  window.location.href = "/home"
+                this.$http.get('/home')
+                 )
+            } else {
+                console.log('false')
+            }
+
+
+            //  this.$http.post('/oauth/token', data)
+                    // this.$http.get('/home')
+            //  window.location.href = "/home";
+              
+
+            //  axios.post('/oauth/token', data)
+             
+            //  .then(function (response){
+            //      this.$auth.setToken(response.body.access_token, response.body.expires_in = Date.now())
+            //      console.log(response)
+                
+            //  })
+             //  this.$http.get('/home')
+            //  .then(
+            //      window.location.href = "/home"
+            //      )
+             
          }
+         },
+         computed:{
+             username_x: {
+                set(val) {
+                    this.$store.state.account.username = val
+                },
+                get() {
+                    return this.$store.state.account.username
+                }
+            },
+            password_x: {
+                set(val) {
+                    this.$store.state.account.password = val
+                },
+                get() {
+                    return this.$store.state.account.password
+                }
+            },
          }
     }
 
