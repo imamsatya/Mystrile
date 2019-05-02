@@ -18,7 +18,7 @@ class AuthController extends Controller
    
     public function getLogin()
     {
-        return \View::make('auth.Login_V2.login');
+        return \View::make('auth/Login_V2/login');
     }
 
     public function postLogin(Request $request)
