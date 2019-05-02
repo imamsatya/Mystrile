@@ -1,7 +1,7 @@
-// import Vue from 'vue'
+import Vue from 'vue'
 
-// import VueResource from 'vue-resource';
-// Vue.use(VueResource)
+import VueResource from 'vue-resource';
+Vue.use(VueResource)
 export default function (Vue){
     Vue.auth = {
         //set token

@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -165,8 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
-        Barryvdh\Cors\ServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
+        // Barryvdh\Cors\ServiceProvider::class,
+        // Laravel\Passport\PassportServiceProvider::class,
 
         /*
          * Application Service Providers...

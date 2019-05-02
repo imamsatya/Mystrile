@@ -1,15 +1,4 @@
-@extends('layouts.app-login')
-
-@section('content')
-<div>
-   <login-c></login-c>
-   <footer-c></footer-c>
-</div>
-@endsection
-
-
-
-{{-- @extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -81,4 +70,4 @@
         </div>
     </div>
 </div>
-@endsection --}}
+@endsection

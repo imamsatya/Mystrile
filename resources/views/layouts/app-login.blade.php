@@ -7,7 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
     <title> Mystrile </title>
     <link rel="shortcut icon" href="{{ asset('MystrileV1_1.png') }}">
@@ -53,5 +53,10 @@
 
     <script  type="text/javascript"  src="{{ asset('js/app.js') }}" ></script>
     {{-- <script src="/js/app.js"></script> --}}
+    {{-- <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script> --}}
 </body>
 </html>

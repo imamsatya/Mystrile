@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use App\HargaBarang;
 use App\SewaAlat;
 use App\JasaKonstruksi;
@@ -23,7 +25,14 @@ class AtributController extends Controller
      * @return \Illuminate\Http\Response
      */
     private $username;
-    
+    public $user;
+    // public function __construct()
+    // {
+    //     $this->middleware(function ($request, $next) {
+    //         $this->user = \Auth::user();
+    //         return $next($request);
+    //     });
+    // }
 
     public function cek(Request $request)
     {
@@ -46,9 +55,10 @@ class AtributController extends Controller
         // $user->save();
 
 
-        $this->username = $request->input('account')['username'];
+        // $this->username = $request->input('account')['username'];
         
         // dd($user);
+        dd('asda');
         dd($request->input('account')['username']);
         dd($this->username);
       
@@ -64,6 +74,9 @@ class AtributController extends Controller
         $setatribut = new SetAtribut;
         $setatributs = $setatribut->get();
 
+        $user = Auth::user();
+        // dd('asdads');
+        
         // require "classes/communitybps.php";
         // For Windows, if anybody is interested, uncomment the following line (by removing the ;) from php.ini
         // ;extension=php_curl.dll
@@ -76,10 +89,10 @@ class AtributController extends Controller
         // 340058779
         // dd($a['nama']);
         // dd($communitybps->username);
-        $a = $this->username;
-        dd($a);
+        // $a = $this->username;
+        // dd($a);
 
-        return View('home', compact('setatributs'));
+        return View('home', compact('setatributs', 'user'));
     }
 
     public function index2(Request $request)
@@ -96,27 +109,30 @@ class AtributController extends Controller
      */
     public function atribut_create()
     {
-        return View('Atribut.atribut-c');
+        $user = Auth::user();
+        return View('Atribut.atribut-c', compact( 'user'));
     }
 
 
     public function harga_barang_create($id)
     {
         $id=$id;
-        
-        return View('Beranda.hargabarang', compact('id'));
+        $user = Auth::user();
+        return View('Beranda.hargabarang', compact('id', 'user'));
     }
 
     public function sewa_alat_create($id)
     {
         $id=$id;
-        return View('Beranda.sewaalat', compact('id'));
+        $user = Auth::user();
+        return View('Beranda.sewaalat', compact('id', 'user'));
     }
 
     public function jasa_konstruksi_create($id)
     {
         $id=$id;
-        return View('Beranda.jasakonstruksi', compact('id'));
+        $user = Auth::user();
+        return View('Beranda.jasakonstruksi', compact('id', 'user'));
     }
 
 

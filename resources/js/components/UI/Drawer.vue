@@ -11,7 +11,26 @@
 
         <div class="md-toolbar-section-end" >
           
-        <md-button @click="showSidepanel = true" class="white--text">  User</md-button>
+        <!-- <md-button @click="showSidepanel = true" class="white--text">  User</md-button> -->
+        <div class="examplex">
+         <vs-dropdown >
+      <a class="a-icon" href="#"  style="color:white">
+       {{user.name}}  
+        <vs-icon class="" icon="expand_more"></vs-icon>
+      </a>
+
+      <vs-dropdown-menu>
+        <vs-dropdown-item>
+          <a href="" @click="logout"> Logout</a>
+          
+        </vs-dropdown-item>
+        
+        <!-- <vs-dropdown-item divider>
+          Option 3
+        </vs-dropdown-item> -->
+      </vs-dropdown-menu>
+    </vs-dropdown>
+        </div>
       </div>
       </md-app-toolbar>
 
@@ -62,6 +81,7 @@
     </md-app>
 
     <footer-c></footer-c>
+    
   </div>
 </template>
 
@@ -69,12 +89,18 @@
 import 'vue-material/dist/theme/default.css'
   export default {
     name: 'PersistentMini',
+     props:  ['user'],
     data: () => ({
       menuVisible: false
     }),
     methods: {
       toggleMenu () {
         this.menuVisible = !this.menuVisible
+      },
+      logout(){
+        axios.get('/logout').then(
+          window.location.href= "/"
+        )
       }
     }
   }
@@ -92,4 +118,18 @@ import 'vue-material/dist/theme/default.css'
     max-width: calc(100vw - 125px);
   }
   
+</style>
+<style lang="stylus">
+.examplex
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .a-icon
+    outline: none;
+    text-decoration: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    i
+      font-size: 18px;
 </style>

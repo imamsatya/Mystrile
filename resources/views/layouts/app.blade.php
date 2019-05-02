@@ -37,11 +37,11 @@
     
     <div id="app">
        
-        <drawer-c>
+        {{-- <drawer-c :user="{{$user}}"> --}}
             <template>
                 @yield('content')
             </template>
-        </drawer-c>
+        {{-- </drawer-c > --}}
         
         {{-- <main class="py-4">
            
@@ -53,5 +53,10 @@
 
     <script  type="text/javascript"  src="{{ asset('js/app.js') }}" ></script>
     {{-- <script src="/js/app.js"></script> --}}
+    {{-- <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script> --}}
 </body>
 </html>

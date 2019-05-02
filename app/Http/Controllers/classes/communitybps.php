@@ -236,7 +236,8 @@ class CommunityBPS{
 			$this->ch = $ch;
 
 		}else{
-			throw new Exception("Plugin Community BPS stopped because The Credentials is wrong");
+			$error = "not found";
+			throw new \Exception("Plugin Community BPS stopped because The Credentials is wrong");
 		}
 	}
 	

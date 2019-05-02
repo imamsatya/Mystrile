@@ -34,7 +34,7 @@
       <v-divider></v-divider>
 
       <v-card-text class="white--text">
-        &copy;2019 — Imam Satya Wedhatama
+        &copy;2019 — Aditya Sudyana  & Imam Satya Wedhatama
       </v-card-text>
     </v-card>
   </v-layout>

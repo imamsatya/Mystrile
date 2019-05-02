@@ -137,6 +137,13 @@ import VeeValidate from 'vee-validate'
             this.$validator.localize('en', this.dictionary)
         },
         methods:{
+        
+        test2(){
+            console.log('fungsi test')
+            // axios.get("http://localhost:8000/api/cek")
+            // axios.get("http://localhost:8000/ceka")
+            this.$route.push('/ceka')
+        },
          login() {
                 this.seen = true;
                 this.$store.state.loader = true;
@@ -158,49 +165,40 @@ import VeeValidate from 'vee-validate'
          test (){
              var data={
                  client_id:2 ,
-                 client_secret:'LqqSO1BC8JjwRViYYppXDgZ42qh9wH2Ow0ZLSCyA',
+                 client_secret:'0XIIrlhs6lySEHdgQvVihScVl4ZPyIPySEC7TbGJ',
                  grant_type:'password',
+                 email: this.username_x,
                  username: this.username_x,
                  password: this.password_x,
              }
              var x= 1;
             
-            
-            if (axios.post('/cek',{
-                                account: this.$store.state.account,
-                            })
-                            ) {
-                console.log(true)
-              this.$http.post('/oauth/token', data)
-              .then(function (response){
-                 this.$auth.setToken(response.body.access_token, response.body.expires_in = Date.now())
-                 console.log(response)
-             })
-               .then(
-                //  window.location.href = "/home"
-                this.$http.get('/home')
-                 )
-            } else {
-                console.log('false')
-            }
 
+                    // if (axios.post('/cek',{
+                    //                     account: this.$store.state.account,
+                    //                 })
+                    //                 ) {
+                        console.log(true)
+                        
+                    //     axios.post("http://api.rumaholi.local/api/post", [], {headers: { 'Authorization' : 'Bearer '+ token}}).then(response => {
+                    //     this.comments = response.data;
+                    //     console.log(response.data)
+                    // })
 
-            //  this.$http.post('/oauth/token', data)
-                    // this.$http.get('/home')
-            //  window.location.href = "/home";
-              
+                    //  this.$http.post('api/auth/login', data)
 
-            //  axios.post('/oauth/token', data)
-             
-            //  .then(function (response){
-            //      this.$auth.setToken(response.body.access_token, response.body.expires_in = Date.now())
-            //      console.log(response)
-                
-            //  })
-             //  this.$http.get('/home')
-            //  .then(
-            //      window.location.href = "/home"
-            //      )
+                    this.$http.post('/oauth/token', data)
+                    // axios.post('/oauth/token', data)
+                    .then(function (response){
+                        this.$auth.setToken(response.body.access_token, response.body.expires_in = Date.now())
+                         console.log(response.data.access_token)
+                             axios.get('api/auth/homex',  {headers: { Authorization : 'Bearer '+ response.body.access_token}})
+                                      axios.get('home',  {headers: { Authorization : 'Bearer '+ response.data.access_token}})
+                                      .then(function (response){
+                                          console.log(response)
+                                      })
+                                    //   this.$router.replace("/feed")
+                    })
              
          }
          },

@@ -69,6 +69,10 @@ import AtributCreate from './components/Create/AtributCreate.vue'
 //Update
 // import HargaBarangUpdate from './components/Update/HargabarangUpdate.vue'
 
+
+
+//Tes
+import Feed from './components/Auth/Feed.vue'
 /**
  * 
  * First we will load all of this project's JavaScript dependencies which
@@ -129,20 +133,33 @@ window.Vue.component('beranda-c', Beranda)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+ 
 //  import Router from './routes.js'
  import Auth from './pacakages/auth/Auth.js'
  Vue.use(Auth)
+
 //  Router.beforeEach(
 //      (to, from, next) => {
 //          if(to.matched.some(record=> record.meta.forVisitors)){
 //              if(Vue.auth.isAuthenticated()){
 //                  next({
-//                      path: '/home'
+//                      path: '/feed'
 //                  })
 //              }else next()
-//          }else next()
 //      }
+ 
+//      else if(to.matched.some(record=> record.meta.forAuth)){
+//         if(Vue.auth.isAuthenticated()){
+//             next({
+//                 path: '/login'
+//             })
+//         }else next()
+//     }
+    
+//     else next()
+//     }
 //  )
+
 const app = new Vue({
     el: '#app',
     // router: Router,
