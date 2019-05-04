@@ -92,7 +92,7 @@
 		
 </head>
 <body>
-	<div id="a">
+	{{-- <div id="a"> --}}
 		<div class="limiter">
 			<div class="container-login100">
 				<div class="wrap-login100">
@@ -137,7 +137,7 @@
 		
 		<div id="dropDownSelect1"></div>
 		<footer-c></footer-c>
-	</div>
+	{{-- </div> --}}
 	
 <!--===============================================================================================-->
 	<script src="{{asset('Login_V2/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
