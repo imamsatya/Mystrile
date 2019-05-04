@@ -42,8 +42,9 @@ Route::post('/', 'AuthController@postLogin')->name('login.post');
 
 
     Route::post('/cek', 'AtributController@cek')->name('cek');
-            Route::get('/about', 'AtributController@about')->name('about');
+           
     Route::group(['middleware' => ['auth']], function () {
+        Route::get('/about', 'AtributController@about')->name('about');
             Route::get('/home', 'AtributController@index')->name('home');
 
             Route::get('/home/atribut/create', 'AtributController@atribut_create')->name('harga_barang_create');
