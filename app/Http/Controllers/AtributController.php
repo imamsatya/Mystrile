@@ -68,6 +68,12 @@ class AtributController extends Controller
 
          
     }
+
+    public function about()
+    {
+        $user = Auth::user();
+        return View('about', compact('user'));
+    }
     public function index()
     {
         //salah tempat cuy

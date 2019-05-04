@@ -26,8 +26,7 @@
             <vs-tr :key="indextr" v-for="(tr, indextr) in data">
           <vs-td :data="data[indextr].jenis_jasa">
             {{data[indextr].jenis_jasa}}
-            ==
-               {{indextr}}
+           
           </vs-td>
 
           

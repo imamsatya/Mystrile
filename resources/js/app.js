@@ -49,7 +49,7 @@ import Login from './components/Auth/Login.vue'
 //UI
 import Drawer from './components/UI/Drawer.vue'
 
-
+import About from './components/About.vue'
 
 import Footer from './components/FooterComponent.vue'
 
@@ -133,6 +133,7 @@ window.Vue.component('beranda-c', Beranda)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+window.Vue.component('about-c', About)
  
 //  import Router from './routes.js'
  import Auth from './pacakages/auth/Auth.js'

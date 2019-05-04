@@ -42,7 +42,7 @@ Route::post('/', 'AuthController@postLogin')->name('login.post');
 
 
     Route::post('/cek', 'AtributController@cek')->name('cek');
-
+            Route::get('/about', 'AtributController@about')->name('about');
     // Route::group(['middleware' => ['auth']], function () {
             Route::get('/home', 'AtributController@index')->name('home');
 

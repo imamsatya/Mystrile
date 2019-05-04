@@ -70,7 +70,7 @@
 
           <md-list-item>
             <md-icon>error</md-icon>
-            <span class="md-list-item-text">About</span>
+            <span class="md-list-item-text"><a href="/about">About</a></span>
           </md-list-item>
         </md-list>
       </md-app-drawer>
