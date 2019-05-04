@@ -99,7 +99,8 @@
 					<form class="login100-form validate-form" method="POST" action="{{route('login.post')}}">
 						{{ csrf_field() }}
 						<span class="login100-form-title p-b-26" style="color:#D81B60;">
-							 {{config('app.name')}}
+							 {{-- {{config('app.name')}} --}}
+							 Mystrile
 						</span>
 						<span class="login100-form-title p-b-48">
 							<img src="{{ asset('MystrileV1_1.png') }}" alt="" sizes="" srcset="" width="100px" height="100px">

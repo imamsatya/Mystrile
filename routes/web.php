@@ -43,7 +43,7 @@ Route::post('/', 'AuthController@postLogin')->name('login.post');
 
     Route::post('/cek', 'AtributController@cek')->name('cek');
             Route::get('/about', 'AtributController@about')->name('about');
-    // Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['auth']], function () {
             Route::get('/home', 'AtributController@index')->name('home');
 
             Route::get('/home/atribut/create', 'AtributController@atribut_create')->name('harga_barang_create');
@@ -87,4 +87,4 @@ Route::post('/', 'AuthController@postLogin')->name('login.post');
             Route::delete('/home/beranda/{id}/jasa_konstruksi/delete', 'AtributController@jasa_konstruksi_destroy')->name('sewa_alat_destroy');
 
             Route::get('/logout', 'AuthController@logout')->name('logout');
-        // });
+        });
