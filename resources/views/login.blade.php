@@ -7,6 +7,8 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="preload" as="image" href="MystrileV1_1.png" width="40px" height="40px" alt="" srcset="">
 <!--===============================================================================================-->	
 	{{-- <link rel="icon" type="image/png" href="{{asset('Login_v2/images/icons/favicon.ico')}}"/> --}}
 <!--===============================================================================================-->

@@ -6,7 +6,11 @@
         <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
           <md-icon style="color:white">menu</md-icon>
         </md-button>
-        <img :src="'/img/MystrileV1_1.png'" width="40px" height="40px" alt="" srcset="">
+        <link rel="preload" as="image" href="MystrileV1_1.png" width="40px" height="40px" alt="" srcset="">
+        <img :src="'MystrileV1_1.png'" alt="" sizes="" srcset="" width="40px" height="40px" alt="" srcset="">
+        
+<!-- <link rel="preload" as="image" href="MystrileV1_1.png" width="40px" height="40px" alt="" srcset=""> -->
+        <!-- <img :src="'/img/MystrileV1_1.png'" width="40px" height="40px" alt="" srcset=""> -->
         <span class="md-title white--text" >Mystrile</span>
 
         <div class="md-toolbar-section-end" >
