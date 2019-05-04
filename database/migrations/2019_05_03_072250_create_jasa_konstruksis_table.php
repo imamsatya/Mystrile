@@ -15,7 +15,8 @@ class CreateJasaKonstruksisTable extends Migration
     {
         Schema::create('jasa_konstruksis', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('jasa_konstruksi');
+            $table->string('jenis_jasa');
+            $table->string('satuan_unit')->nullable();
             $table->timestamps();
         });
 

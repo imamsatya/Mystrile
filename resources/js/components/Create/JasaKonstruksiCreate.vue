@@ -45,7 +45,7 @@
                     <div slot="header">
                         <br>
                         <h3>
-                            Tambah Harga Barang
+                            Tambah Jasa Konstruksi
                         </h3>
                         <br>
 

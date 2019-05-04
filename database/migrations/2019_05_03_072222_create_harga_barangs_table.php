@@ -20,11 +20,11 @@ class CreateHargaBarangsTable extends Migration
             $table->string('satuan_standar')->nullable();
             $table->string('merk')->nullable();
             $table->string('satuan_setempat')->nullable();
-            $table->string('panjang')->nullable();
-            $table->string('lebar')->nullable();
-            $table->string('tinggi')->nullable();
-            $table->string('berat')->nullable();
-            $table->string('konversi')->nullable();
+            $table->string('ukuran_panjang')->nullable();
+            $table->string('ukuran_lebar')->nullable();
+            $table->string('ukuran_tinggi')->nullable();
+            $table->string('ukuran_berat')->nullable();
+            $table->string('konversi_satuan_setempat')->nullable();
             $table->string('harga_satuan_setempat')->nullable();
             $table->string('harga_satuan_standar')->nullable();
             $table->timestamps();

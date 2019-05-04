@@ -189,34 +189,34 @@ class AtributController extends Controller
 
        //ukuran satuan setempat
        if ($request->input('hargabarang')['panjang']) {
-        $hargabarang->panjang = 'panjang';
+        $hargabarang->ukuran_panjang = 'panjang';
        }else{
-        $hargabarang->panjang = 'tanpa panjang';   
+        $hargabarang->ukuran_panjang = 'tanpa panjang';   
        }
        
 
        if ($request->input('hargabarang')['lebar']) {
-        $hargabarang->lebar = 'lebar';
+        $hargabarang->ukuran_lebar = 'lebar';
        }else{
-        $hargabarang->lebar = 'tanpa lebar';   
+        $hargabarang->ukuran_lebar = 'tanpa lebar';   
        }
        
        if ($request->input('hargabarang')['tinggi']) {
-        $hargabarang->tinggi = 'tinggi';
+        $hargabarang->ukuran_tinggi = 'tinggi';
        }else{
-        $hargabarang->tinggi = 'tanpa tinggi';   
+        $hargabarang->ukuran_tinggi = 'tanpa tinggi';   
        }
 
        if ($request->input('hargabarang')['berat']) {
-        $hargabarang->berat = 'berat';
+        $hargabarang->ukuran_berat = 'berat';
        }else{
-        $hargabarang->berat = 'tanpa berat';   
+        $hargabarang->ukuran_berat = 'tanpa berat';   
        }
 
        if ($request->input('hargabarang')['konversi']) {
-        $hargabarang->konversi = 'konversi';
+        $hargabarang->konversi_satuan_setempat = 'konversi';
        }else{
-        $hargabarang->konversi = 'tanpa konversi';   
+        $hargabarang->konversi_satuan_setempat = 'tanpa konversi';   
        }
        
 
@@ -253,8 +253,9 @@ class AtributController extends Controller
 
     public function jasa_konstruksi_store(Request $request, $id){
         
+        
         $jasakonstruksi = new JasaKonstruksi;
-        $jasakonstruksi->jasa_konstruksi = $request->input('jasakonstruksi')['jasa_konstruksi'];
+        $jasakonstruksi->jenis_jasa = $request->input('jasakonstruksi')['jasa_konstruksi'];
         $jasakonstruksi->set_id = $id;
         $jasakonstruksi->save();
     }
@@ -288,8 +289,10 @@ class AtributController extends Controller
         $setatribut = new SetAtribut;
         $setatributs = $setatribut->where('id', $id)->get();
         $id=$id;
+
+        $user = Auth::user();
      
-        return View('Home.beranda', compact('hargabarangs', 'sewaalats', 'jasakonstruksis', 'id', 'setatributs'));
+        return View('Home.beranda', compact('hargabarangs', 'sewaalats', 'jasakonstruksis', 'id', 'setatributs', 'user'));
     }
 
     /**
@@ -395,7 +398,7 @@ class AtributController extends Controller
         $jasakonstruksi = $jasakonstruksis->where('id', $id)->first();
      
       
-        $jasakonstruksi->jasa_konstruksi = $request->jasa_konstruksi;
+        $jasakonstruksi->jenis_jasa = $request->jenis_jasa;
         $jasakonstruksi->save();
         
     }
@@ -428,33 +431,33 @@ class AtributController extends Controller
         }
         
         if ($request->panjang) {
-            $hargabarang->panjang = 'panjang';
+            $hargabarang->ukuran_panjang = 'panjang';
         } else {
-            $hargabarang->panjang = 'tanpa panjang';
+            $hargabarang->ukuran_panjang = 'tanpa panjang';
         }
 
         if ($request->lebar) {
-            $hargabarang->lebar = 'lebar';
+            $hargabarang->ukuran_lebar = 'lebar';
         } else {
-            $hargabarang->lebar = 'tanpa lebar';
+            $hargabarang->ukuran_lebar = 'tanpa lebar';
         }
 
         if ($request->tinggi) {
-            $hargabarang->tinggi = 'tinggi';
+            $hargabarang->ukuran_tinggi = 'tinggi';
         } else {
-            $hargabarang->tinggi = 'tanpa tinggi';
+            $hargabarang->ukuran_tinggi = 'tanpa tinggi';
         }
 
         if ($request->berat) {
-            $hargabarang->berat = 'berat';
+            $hargabarang->ukuran_berat = 'berat';
         } else {
-            $hargabarang->berat = 'tanpa berat';
+            $hargabarang->ukuran_berat = 'tanpa berat';
         }
 
         if ($request->konversi) {
-            $hargabarang->konversi = 'konversi';
+            $hargabarang->konversi_satuan_setempat = 'konversi';
         } else {
-            $hargabarang->konversi = 'tanpa konversi';
+            $hargabarang->konversi_satuan_setempat = 'tanpa konversi';
         }
 
         if ($request->harga_satuan_setempat) {
@@ -479,21 +482,165 @@ class AtributController extends Controller
 
     }
 
-    public function masadit($id)
+    public function share($id)
     {
         $setatributs = new SetAtribut;
-        $setatribut = $setatributs->where('id', $id)->first();
+        $setatribut = $setatributs->where('id', $id)->select('nama_set_atribut')->get();
 
         $sewaalats = new SewaAlat;
-        $sewaalat = $sewaalats->where('set_id', $id)->first();
+        $sewaalat = $sewaalats->where('set_id', $id)
+        ->select('jenis_barang', 
+        'kualitas_barang'
+        )
+        ->get();
 
         $jasakonstruksis = new JasaKonstruksi;
-        $jasakonstruksi = $jasakonstruksis->where('set_id', $id)->first();
+        $jasakonstruksi = $jasakonstruksis->where('set_id', $id)
+        ->select('jenis_jasa', 
+        'satuan_unit'
+        )
+        ->get();
 
         $hargabarangs = new HargaBarang;
-        $hargabarang = $hargabarangs->where('set_id', $id)->first();
+        $hargabarang = $hargabarangs->where('set_id', $id)
+        ->select('jenis_barang', 
+        'kualitas_barang', 
+        'satuan_standar', 
+        'merk',
+        'satuan_setempat',
+        'ukuran_panjang',
+        'ukuran_lebar',
+        'ukuran_tinggi',
+        'ukuran_berat',
+        'konversi_satuan_setempat',
+        'harga_satuan_setempat',
+        'harga_satuan_standar')
+        ->get();
 
-        return View('Home.tes', compact('hargabarang', 'sewaalat', 'jasakonstruksi', 'setatribut'));
+        $metadata2 = collect([
+
+            "data_harga"    => [
+                               
+                                    [
+                                        "jenis_barang" => "Tanah Urug",
+                                        "kualitas_barang" => "Biasa",
+                                        "satuan_standar" => "m3",
+                                        "merk" => false,
+                                        "satuan_setempat" => true,
+                                        "ukuran_panjang" => true,
+                                        "ukuran_lebar" => true,
+                                        "ukuran_tinggi" => true,
+                                        "ukuran_berat" => false,
+                                        "konversi_satuan_setempat" => false,
+                                        "harga_satuan_setempat" => true,
+                                        "harga_satuan_standar" => false,
+                                    ],
+                                    [
+                                        "jenis_barang" => "Tanah Urug 2",
+                                        "kualitas_barang" => "Biasa",
+                                        "satuan_standar" => "m3",
+                                        "merk" => false,
+                                        "satuan_setempat" => true,
+                                        "ukuran_panjang" => true,
+                                        "ukuran_lebar" => true,
+                                        "ukuran_tinggi" => true,
+                                        "ukuran_berat" => false,
+                                        "konversi_satuan_setempat" => false,
+                                        "harga_satuan_setempat" => true,
+                                        "harga_satuan_standar" => false,
+                                    ],
+                                ],
+            "sewa_alat"     =>[
+                                
+                                    [
+                                        "jenis_barang" => "Excavator PC-200",
+                                        "kualitas_barang" => "Kapasitas Bucket 0,8 m3",
+                                    ],
+                                ],
+            "jasa_konstruksi"=>[
+                                    [
+                                        "jenis_jasa" => "Upah Kepala Tukang",
+                                        "satuan_unit" => "O-H"
+                                    ]
+                                ]
+            
+           
+        ]);
+
+        foreach ($hargabarang as $key => $value) {
+            if ($value->merk = 'bermerk') {
+                $value->merk = true;
+            } else {
+                $value->merk = false;
+            }
+
+            if ($value->satuan_standar == 'tanpa satuan standar') {
+                $value->satuan_standar = false;
+            } 
+
+            if ($value->satuan_setempat != 'tanpa satuan setempat') {
+                $value->satuan_setempat = true;
+            } else {
+                $value->satuan_setempat = false;
+            }
+
+            if ($value->ukuran_panjang != 'tanpa panjang') {
+                $value->ukuran_panjang = true;
+            } else {
+                $value->ukuran_panjang = false;
+            }
+
+            if ($value->ukuran_lebar != 'tanpa lebar') {
+                $value->ukuran_lebar = true;
+            } else {
+                $value->ukuran_lebar = false;
+            }
+
+
+            if ($value->ukuran_tinggi != 'tanpa tinggi') {
+                $value->ukuran_tinggi = true;
+            } else {
+                $value->ukuran_tinggi = false;
+            }
+            
+            if ($value->ukuran_berat != 'tanpa berat') {
+                $value->ukuran_berat = true;
+            } else {
+                $value->ukuran_berat = false;
+            }
+
+            if ($value->konversi_satuan_setempat != 'tanpa konversi') {
+                $value->konversi_satuan_setempat = true;
+            } else {
+                $value->konversi_satuan_setempat = false;
+            }
+
+            if ($value->harga_satuan_setempat != 'tanpa harga satuan setempat') {
+                $value->harga_satuan_setempat = true;
+            } else {
+                $value->harga_satuan_setempat = false;
+            }
+
+            if ($value->harga_satuan_standar != 'tanpa harga satuan standar') {
+                $value->harga_satuan_standar = true;
+            } else {
+                $value->harga_satuan_standar = false;
+            }
+            
+        }
+      
+        
+        // dd($hargabarang);
+        $metadata = collect([
+            "data_harga"    =>$hargabarang,
+            "sewa_alat"     => $sewaalat,
+            "jasa_konstruksi"=>$jasakonstruksi
+            
+           
+        ]);
+        // dd($metadata3);
+        // return View('Home.tes', compact('hargabarang', 'sewaalat', 'jasakonstruksi', 'setatribut'));
+        return View('Home.tes', compact('metadata'));
         // return View()
     }
 

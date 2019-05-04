@@ -4,13 +4,15 @@
 
         <vs-button type="gradient" color="danger" :href="'/home/beranda/'+id+'/harga_barang/create'">Tambah Harga Barang
         </vs-button>
+        <!-- {{datas_view}} -->
         <br>
-        <vs-table :data="datas_view" max-items="5" pagination search>
+        <vs-table :data="datas_view" max-items="10" pagination search>
             <template slot="header">
                 <h3>
                     Harga Barang
                 </h3>
             </template>
+
             <template slot="thead">
                 <vs-th style="font-size: 14px">
                     Jenis Barang
@@ -56,9 +58,13 @@
 
             <template slot-scope="{data}">
                 <!-- <vs-tr :state="indextr == 2 || indextr == 5?'success':indextr == 6?'danger':null" :key="indextr" v-for="(tr, indextr) in data" > -->
+            
                 <vs-tr :key="indextr" v-for="(tr, indextr) in data">
                     <vs-td :data="data[indextr].jenis_barang">
                         {{data[indextr].jenis_barang}}
+                        <!-- {{tr}} -->
+                        ---
+                     
                     </vs-td>
 
                     <vs-td :data="data[indextr].kualitas_barang">
@@ -89,43 +95,43 @@
                             disabled="true" v-model="switch3" />
                     </vs-td>
 
-                    <vs-td :data="data[indextr].panjang">
-                        <label for="">{{data[indextr].panjang}}</label>
-                        <vs-switch color="success" v-if="data[indextr].panjang != 'tanpa panjang'" disabled="true"
+                    <vs-td :data="data[indextr].ukuran_panjang">
+                        <label for="">{{data[indextr].ukuran_panjang}}</label>
+                        <vs-switch color="success" v-if="data[indextr].ukuran_panjang != 'tanpa panjang'" disabled="true"
                             v-model="switch3" />
-                        <vs-switch color="danger" v-if="data[indextr].panjang == 'tanpa panjang'" disabled="true"
-                            v-model="switch3" />
-                    </vs-td>
-
-                    <vs-td :data="data[indextr].lebar">
-                        <label for="">{{data[indextr].lebar}}</label>
-                        <vs-switch color="success" v-if="data[indextr].lebar != 'tanpa lebar'" disabled="true"
-                            v-model="switch3" />
-                        <vs-switch color="danger" v-if="data[indextr].lebar == 'tanpa lebar'" disabled="true"
+                        <vs-switch color="danger" v-if="data[indextr].ukuran_panjang == 'tanpa panjang'" disabled="true"
                             v-model="switch3" />
                     </vs-td>
 
-                    <vs-td :data="data[indextr].tinggi">
-                        <label for="">{{data[indextr].tinggi}}</label>
-                        <vs-switch color="success" v-if="data[indextr].tinggi != 'tanpa tinggi'" disabled="true"
+                    <vs-td :data="data[indextr].ukuran_lebar">
+                        <label for="">{{data[indextr].ukuran_lebar}}</label>
+                        <vs-switch color="success" v-if="data[indextr].ukuran_lebar != 'tanpa lebar'" disabled="true"
                             v-model="switch3" />
-                        <vs-switch color="danger" v-if="data[indextr].tinggi == 'tanpa tinggi'" disabled="true"
-                            v-model="switch3" />
-                    </vs-td>
-
-                    <vs-td :data="data[indextr].berat">
-                        <label for="">{{data[indextr].berat}}</label>
-                        <vs-switch color="success" v-if="data[indextr].berat != 'tanpa berat'" disabled="true"
-                            v-model="switch3" />
-                        <vs-switch color="danger" v-if="data[indextr].berat == 'tanpa berat'" disabled="true"
+                        <vs-switch color="danger" v-if="data[indextr].ukuran_lebar == 'tanpa lebar'" disabled="true"
                             v-model="switch3" />
                     </vs-td>
 
-                    <vs-td :data="data[indextr].konversi">
-                        <label for="">{{data[indextr].konversi}}</label>
-                        <vs-switch color="success" v-if="data[indextr].konversi != 'tanpa konversi'" disabled="true"
+                    <vs-td :data="data[indextr].ukuran_tinggi">
+                        <label for="">{{data[indextr].ukuran_tinggi}}</label>
+                        <vs-switch color="success" v-if="data[indextr].ukuran_tinggi != 'tanpa tinggi'" disabled="true"
                             v-model="switch3" />
-                        <vs-switch color="danger" v-if="data[indextr].konversi == 'tanpa konversi'" disabled="true"
+                        <vs-switch color="danger" v-if="data[indextr].ukuran_tinggi == 'tanpa tinggi'" disabled="true"
+                            v-model="switch3" />
+                    </vs-td>
+
+                    <vs-td :data="data[indextr].ukuran_berat">
+                        <label for="">{{data[indextr].ukuran_berat}}</label>
+                        <vs-switch color="success" v-if="data[indextr].ukuran_berat != 'tanpa berat'" disabled="true"
+                            v-model="switch3" />
+                        <vs-switch color="danger" v-if="data[indextr].ukuran_berat == 'tanpa berat'" disabled="true"
+                            v-model="switch3" />
+                    </vs-td>
+
+                    <vs-td :data="data[indextr].konversi_satuan_setempat">
+                        <label for="">{{data[indextr].konversi_satuan_setempat}}</label>
+                        <vs-switch color="success" v-if="data[indextr].konversi_satuan_setempat != 'tanpa konversi'" disabled="true"
+                            v-model="switch3" />
+                        <vs-switch color="danger" v-if="data[indextr].konversi_satuan_setempat == 'tanpa konversi'" disabled="true"
                             v-model="switch3" />
                     </vs-td>
 
@@ -389,7 +395,11 @@
             },
             deleteRow(id, index, data) {
                 console.log(id)
-                Vue.swal({
+                for (let index = 0; index < this.datas_view.length; index++) {
+                  const element = this.datas_view[index];
+                  console.log(element.id)
+                  if (id == element.id) {
+                    Vue.swal({
                     title: 'Yakin?',
                     text: "Kamu akan menghapusnya selama-lamanya",
                     type: 'warning',
@@ -420,13 +430,19 @@
 
 
                 })
+                  } 
+                }
+                
 
                 // .then(response => this.datas.splice(index, 1));
 
             },
             activePrompt2(index, id) {
-
-                this.id_selected = id
+                  for (let index = 0; index < this.datas_view.length; index++) {
+                  const element = this.datas_view[index];
+                  console.log(element.id)
+                  if (id == element.id) {
+                      this.id_selected = id
                 this.index_selected = index
                 console.log(id, index, this.id_selected, this.index_selected)
                 this.activePrompt2x = true
@@ -458,31 +474,31 @@
                 }
 
 
-                if (this.datas_view[index].panjang != 'tanpa panjang') {
+                if (this.datas_view[index].ukuran_panjang != 'tanpa panjang') {
                     this.edited_value.panjang = true
                 } else {
                     this.edited_value.panjang = false
                 }
 
-                if (this.datas_view[index].lebar != 'tanpa lebar') {
+                if (this.datas_view[index].ukuran_lebar != 'tanpa lebar') {
                     this.edited_value.lebar = true
                 } else {
                     this.edited_value.lebar = false
                 }
 
-                if (this.datas_view[index].tinggi != 'tanpa tinggi') {
+                if (this.datas_view[index].ukuran_tinggi != 'tanpa tinggi') {
                     this.edited_value.tinggi = true
                 } else {
                     this.edited_value.tinggi = false
                 }
 
-                if (this.datas_view[index].berat != 'tanpa berat') {
+                if (this.datas_view[index].ukuran_berat != 'tanpa berat') {
                     this.edited_value.berat = true
                 } else {
                     this.edited_value.berat = false
                 }
 
-                if (this.datas_view[index].konversi != 'tanpa konversi') {
+                if (this.datas_view[index].konversi_satuan_setempat != 'tanpa konversi') {
                     this.edited_value.konversi = true
                 } else {
                     this.edited_value.konversi = false
@@ -499,6 +515,11 @@
                 } else {
                     this.edited_value.harga_satuan_standar = false
                 }
+
+
+                  } 
+                }
+                
 
             },
             cancelForm() {
@@ -547,33 +568,33 @@
                 }
 
                 if (this.edited_value.panjang) {
-                    this.datas_view[this.index_selected].panjang = 'panjang'
+                    this.datas_view[this.index_selected].ukuran_panjang = 'panjang'
                 } else {
-                    this.datas_view[this.index_selected].panjang = 'tanpa panjang'
+                    this.datas_view[this.index_selected].ukuran_panjang = 'tanpa panjang'
                 }
 
                 if (this.edited_value.lebar) {
-                    this.datas_view[this.index_selected].lebar = 'lebar'
+                    this.datas_view[this.index_selected].ukuran_lebar = 'lebar'
                 } else {
-                    this.datas_view[this.index_selected].lebar = 'tanpa lebar'
+                    this.datas_view[this.index_selected].ukuran_lebar = 'tanpa lebar'
                 }
 
                 if (this.edited_value.tinggi) {
-                    this.datas_view[this.index_selected].tinggi = 'tinggi'
+                    this.datas_view[this.index_selected].ukuran_tinggi = 'tinggi'
                 } else {
-                    this.datas_view[this.index_selected].tinggi = 'tanpa tinggi'
+                    this.datas_view[this.index_selected].ukuran_tinggi = 'tanpa tinggi'
                 }
 
                 if (this.edited_value.berat) {
-                    this.datas_view[this.index_selected].berat = 'berat'
+                    this.datas_view[this.index_selected].ukuran_berat = 'berat'
                 } else {
-                    this.datas_view[this.index_selected].berat = 'tanpa berat'
+                    this.datas_view[this.index_selected].ukuran_berat = 'tanpa berat'
                 }
 
                 if (this.edited_value.konversi) {
-                    this.datas_view[this.index_selected].konversi = 'konversi'
+                    this.datas_view[this.index_selected].konversi_satuan_setempat = 'konversi'
                 } else {
-                    this.datas_view[this.index_selected].konversi = 'tanpa konversi'
+                    this.datas_view[this.index_selected].konversi_satuan_setempat = 'tanpa konversi'
                 }
 
                 if (this.edited_value.harga_satuan_setempat) {

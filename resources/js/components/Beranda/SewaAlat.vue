@@ -4,7 +4,7 @@
         <vs-button type="gradient" color="danger" :href="'/home/beranda/'+id+'/sewa_alat/create'">Tambah Sewa Alat
         </vs-button>
         <br>
-        <vs-table :data="datas_view" max-items="5" pagination search>
+        <vs-table :data="datas_view" max-items="10" pagination search>
             <template slot="header">
                 <h3>
                     Sewa Alat
@@ -24,8 +24,8 @@
             </template>
 
             <template slot-scope="{data}">
-                <vs-tr :state="indextr == 2 || indextr == 5?'success':indextr == 6?'danger':null" :key="indextr"
-                    v-for="(tr, indextr) in data">
+                <!-- <vs-tr :state="indextr == 2 || indextr == 5?'success':indextr == 6?'danger':null" :key="indextr"             v-for="(tr, indextr) in data"> -->
+                    <vs-tr :key="indextr" v-for="(tr, indextr) in data">
                     <vs-td :data="data[indextr].jenis_barang">
                         {{data[indextr].jenis_barang}}
                     </vs-td>
@@ -135,13 +135,19 @@
         },
         methods: {
             activePrompt2(index, id) {
-                
-                this.id_selected = id
+                for (let index = 0; index < this.datas_view.length; index++) {
+                  const element = this.datas_view[index];
+                  console.log(element.id)
+                  if (id == element.id) {
+                  this.id_selected = id
                 this.index_selected = index
                 console.log(id, index, this.id_selected, this.index_selected)
                 this.activePrompt2x = true
                 this.edited_value.jenis_barang = this.datas_view[index].jenis_barang
                 this.edited_value.kualitas_barang = this.datas_view[index].kualitas_barang
+                  } 
+                }
+                
 
             },
             cancelForm() {
@@ -198,7 +204,12 @@
             },
             deleteRow(id, index, data) {
                 console.log(id)
-                Vue.swal({
+
+                for (let index = 0; index < this.datas_view.length; index++) {
+                  const element = this.datas_view[index];
+                  console.log(element.id)
+                  if (id == element.id) {
+                      Vue.swal({
                     title: 'Yakin?',
                     text: "Kamu akan menghapusnya selama-lamanya",
                     type: 'warning',
@@ -226,6 +237,9 @@
 
 
                 })
+                  } 
+                }
+                
 
                 // .then(response => this.datas.splice(index, 1));
 

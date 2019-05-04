@@ -16,7 +16,14 @@ class CreateSetAtributsTable extends Migration
         Schema::create('set_atributs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_set_atribut');
+            
             $table->timestamps();
+        });
+
+        Schema::table('set_atributs', function (Blueprint $table){
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            
         });
     }
 

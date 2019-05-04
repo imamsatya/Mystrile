@@ -64,9 +64,14 @@
                                 </vs-td>
 
                                 <vs-td :data="data[indextr].id">
+                                    <!-- :href="'/home/'+data[indextr].id" -->
                                     <vs-button color="primary" type="line" icon="visibility" size="small" :href="'/home/beranda/'+data[indextr].id"></vs-button>
                                     <vs-button color="success" type="line" icon="create" size="small" @click="activePrompt2(indextr, data[indextr].id)"></vs-button>
-                                    <vs-button color="warning" type="line" icon="launch" size="small" :href="'/home/'+data[indextr].id"></vs-button>
+                                    <vs-button color="warning" type="line" icon="launch" size="small" 
+                                    
+                                    @click="activePrompt3(indextr, data[indextr].id)"
+                                    >
+                                    </vs-button>
                                     <vs-button color="danger" type="line" icon="delete" size="small"
                                     @click="deleteRow(data[indextr].id, indextr, tr)"
                                     ></vs-button>
@@ -83,6 +88,27 @@
                                     <div class="con-exemple-prompt">
                                         <vs-input label="Nama Set Atribut" placeholder="Nama set atribut"
                                             v-model="edited_value.nama_set_atribut" name="jenis_barang_new" />
+
+                                       
+
+                                        <vs-alert :vs-active="!validName" color="danger" vs-icon="new_releases">
+                                            Fields can not be empty please enter the data
+                                        </vs-alert>
+                                    </div>
+                                </vs-prompt>
+                            </div>
+
+                             <div class="centerx con-exemple-prompt">
+                                <!-- :vs-is-valid="validName" -->
+                                  <!-- @vs-accept="acceptAlert(data[indextr].id, indextr, data[indextr].jenis_barang)" -->
+                                <vs-prompt 
+                                  
+                                     :vs-is-valid="validName" :vs-active.sync="activePrompt3x"
+                                    vs-title="Api" vs-accept-text="Close">
+
+                                    <div class="con-exemple-prompt">
+                                        <vs-input label="Copy link ini" placeholder="link ..."
+                                             name="jenis_barang_new" v-model="link" />
 
                                        
 
@@ -117,6 +143,7 @@
                nama_set_atribut:''
            },
            activePrompt2x:false,
+           activePrompt3x:false,
         }),
         computed:{
             validName() {
@@ -164,6 +191,16 @@
                 this.index_selected = index
                 console.log(id, index, this.id_selected, this.index_selected)
                 this.activePrompt2x = true
+                this.edited_value.nama_set_atribut = this.datas_view[index].nama_set_atribut
+                
+
+            },
+             activePrompt3(index, id) {
+                this.link ='http://ikk.tolisapp.web.id/home/'+id
+                this.id_selected = id
+                this.index_selected = index
+                console.log(id, index, this.id_selected, this.index_selected)
+                this.activePrompt3x = true
                 this.edited_value.nama_set_atribut = this.datas_view[index].nama_set_atribut
                 
 

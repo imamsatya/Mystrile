@@ -1,4 +1,5 @@
-{{$setatribut}}
+{{-- {{$setatribut}}
 {{$hargabarang}}
 {{$sewaalat}}
-{{$jasakonstruksi}}
+{{$jasakonstruksi}} --}}
+{{ json_encode($metadata)}}
