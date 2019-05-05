@@ -122,7 +122,7 @@ window.Vue = require('vue')
 window.Vue.component('drawer-c', Drawer)
 
 //Auth
-window.Vue.component('login-c', Login)
+// window.Vue.component('login-c', Login)
 
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default)
