@@ -9,9 +9,9 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 Vue.use(Vuetify)
 
-import Vuecidity from 'vuecidity'
-import 'vuecidity/dist/lib/vuecidity.min.css'
-Vue.use(Vuecidity)
+// import Vuecidity from 'vuecidity'
+// import 'vuecidity/dist/lib/vuecidity.min.css'
+// Vue.use(Vuecidity)
 
 
 // import BootstrapVue from 'bootstrap-vue'
