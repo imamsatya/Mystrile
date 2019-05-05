@@ -104,7 +104,7 @@
                                 <vs-prompt 
                                   
                                      :vs-is-valid="validName" :vs-active.sync="activePrompt3x"
-                                    vs-title="Api" vs-accept-text="Close">
+                                    vs-title="API" vs-accept-text="Close">
 
                                     <div class="con-exemple-prompt">
                                         <vs-input label="Copy link ini" placeholder="link ..."
