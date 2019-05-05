@@ -54,7 +54,7 @@
         {{-- <footer-c></footer-c> --}}
     </div>
 
-    <script  type="text/javascript"  src="{{ asset('js/app.js') }}" async ></script>
+    <script  type="text/javascript"  src="{{ asset('js/app.js') }}" defer ></script>
     {{-- <script src="/js/app.js"></script> --}}
     {{-- <script>
         window.Laravel = {!! json_encode([
