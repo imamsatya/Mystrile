@@ -3,7 +3,22 @@ import Vue from 'vue'
 import Vuesax from 'vuesax'
 import 'vuesax/dist/vuesax.css'
 import 'material-icons/iconfont/material-icons.css'
+
+
 Vue.use(Vuesax)
+
+// import { vsButton, vsSelect, vsPopup, vsBreadcrumb, vsCard, vsDialog, vsDropdown, vsNotifications, vsPagination, vsTable, vsTabs } from 'vuesax'
+// Vue.use(vsButton)
+// Vue.use(vsSelect)
+// Vue.use(vsPopup)
+// Vue.use(vsBreadcrumb)
+// Vue.use(vsCard)
+// Vue.use(vsDialog)
+// Vue.use(vsDropdown)
+// Vue.use(vsNotifications)
+// Vue.use(vsPagination)
+// Vue.use(vsTable)
+// Vue.use(vsTabs)
 
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
@@ -43,7 +58,7 @@ import { store } from './store/store'
 
 
 //Auth
-import Login from './components/Auth/Login.vue'
+// import Login from './components/Auth/Login.vue'
 
 
 //UI
@@ -72,7 +87,7 @@ import AtributCreate from './components/Create/AtributCreate.vue'
 
 
 //Tes
-import Feed from './components/Auth/Feed.vue'
+// import Feed from './components/Auth/Feed.vue'
 /**
  * 
  * First we will load all of this project's JavaScript dependencies which
@@ -110,7 +125,7 @@ window.Vue.component('drawer-c', Drawer)
 window.Vue.component('login-c', Login)
 
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default)
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default)
 
 window.Vue.component('footer-c', Footer)
 
@@ -136,8 +151,8 @@ window.Vue.component('beranda-c', Beranda)
 window.Vue.component('about-c', About)
  
 //  import Router from './routes.js'
- import Auth from './pacakages/auth/Auth.js'
- Vue.use(Auth)
+//  import Auth from './pacakages/auth/Auth.js'
+//  Vue.use(Auth)
 
 //  Router.beforeEach(
 //      (to, from, next) => {
