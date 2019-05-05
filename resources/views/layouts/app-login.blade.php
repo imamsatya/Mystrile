@@ -7,7 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+    <link rel="preload" as="image" href="MystrileV1_1.png" width="40px" height="40px" alt="" srcset=""> 
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
     <title> Mystrile </title>
     <link rel="shortcut icon" href="{{ asset('MystrileV1_1.png') }}">
