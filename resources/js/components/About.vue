@@ -1,6 +1,7 @@
 <template>
     <div>
-        <!-- <h1>Halo</h1> -->      
+        <!-- <h1>Halo</h1> -->   
+           
         <v-container bg fill-height grid-list-md>
             <v-layout row wrap align-center>
                 <vs-row vs-justify="center">
