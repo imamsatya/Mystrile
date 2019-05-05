@@ -42,8 +42,8 @@ Vue.use(VueMaterial)
 import VueSweetalert2 from 'vue-sweetalert2'; 
 Vue.use(VueSweetalert2);
 
-import VueResource from 'vue-resource';
-Vue.use(VueResource)
+// import VueResource from 'vue-resource';
+// Vue.use(VueResource)
 
 window.axios = require('axios');
 
