@@ -336,7 +336,13 @@ class AtributController extends Controller
     }
 
     public function atribut_destroy($id)
-    {
+    {   
+        $jasakonstruksis = new JasaKonstruksi;
+        $jasakonstruksi = $jasakonstruksis->where('set_id', $id)->delete();
+        $sewaalats = new SewaAlat;
+        $sewaalat = $sewaalats->where('set_id', $id)->delete();
+        $hargabarangs = new HargaBarang;
+        $hargabarang = $hargabarangs->where('set_id', $id)->delete();
         $setatributs = new SetAtribut;
         $setatribut = $setatributs->where('id', $id)->delete();
 
