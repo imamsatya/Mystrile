@@ -44,6 +44,8 @@ Vue.use(VueMaterial)
 import VueSweetalert2 from 'vue-sweetalert2'; 
 Vue.use(VueSweetalert2);
 
+import VueClipboard from 'vue-clipboard2'
+Vue.use(VueClipboard)
 // import VueResource from 'vue-resource';
 // Vue.use(VueResource)
 

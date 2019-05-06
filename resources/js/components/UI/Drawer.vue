@@ -17,23 +17,25 @@
           
         <!-- <md-button @click="showSidepanel = true" class="white--text">  User</md-button> -->
         <div class="examplex">
-         <vs-dropdown >
-      <a class="a-icon" href="#"  style="color:white">
-       {{user.name}}  
-        <vs-icon class="" icon="expand_more"></vs-icon>
-      </a>
+            <vs-dropdown vs-trigger-click >
+              <a class="a-icon" href="#"  style="color:white">
+              {{user.name}}  
+                <vs-icon class="" icon="expand_more"></vs-icon>
+              </a>
 
-      <vs-dropdown-menu>
-        <vs-dropdown-item>
-          <a href="" @click="logout"> Logout</a>
-          
-        </vs-dropdown-item>
-        
-        <!-- <vs-dropdown-item divider>
-          Option 3
-        </vs-dropdown-item> -->
-      </vs-dropdown-menu>
-    </vs-dropdown>
+              <vs-dropdown-menu>
+                <vs-dropdown-item>
+                  <a href="" @click="logout"> 
+                    Logout</a>
+                  
+                </vs-dropdown-item>  
+              
+              </vs-dropdown-menu>
+
+
+            </vs-dropdown>
+           
+
         </div>
       </div>
       </md-app-toolbar>

@@ -26,7 +26,7 @@
                             </div>
 
                             <div>
-                                <p>Aplikasi ini dibuat untuk mempermudah petugas IKK dalam melakukan pendataan di lapangan
+                                <p>Aplikasi ini dibuat untuk mempermudah petugas IKK dalam melakukan pendataan di lapangan.
             Proyek ini dibangun bersama oleh : <br>
             Aditya Sudyana, S.S.T. <br>
             Imam Satya Wedhatama S.Tr.Stat

@@ -78,9 +78,11 @@ class AtributController extends Controller
     {
         //salah tempat cuy
         $setatribut = new SetAtribut;
-        $setatributs = $setatribut->get();
-
         $user = Auth::user();
+        $setatributs = $setatribut->where('user_id', $user->id)->get();
+
+       
+        // dd($user->id);
         // dd('asdads');
         
         // require "classes/communitybps.php";
@@ -156,8 +158,9 @@ class AtributController extends Controller
     public function atribut_store(Request $request){
         
         $setatribut = new SetAtribut;
+        $user = Auth::user();
         $setatribut->nama_set_atribut = $request->input('setatribut')['nama_atribut'];
-       
+        $setatribut->user_id = $user->id; 
         $setatribut->save();
     }
 

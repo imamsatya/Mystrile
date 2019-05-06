@@ -68,7 +68,7 @@
                                     <vs-button color="primary" type="line" icon="visibility" size="small" :href="'/home/beranda/'+data[indextr].id"></vs-button>
                                     <vs-button color="success" type="line" icon="create" size="small" @click="activePrompt2(indextr, data[indextr].id)"></vs-button>
                                     <vs-button color="warning" type="line" icon="launch" size="small" 
-                                    
+                                   
                                     @click="activePrompt3(indextr, data[indextr].id)"
                                     >
                                     </vs-button>
@@ -77,48 +77,74 @@
                                     ></vs-button>
 
                                     <div>
-                            <div class="centerx con-exemple-prompt">
-                                <!-- :vs-is-valid="validName" -->
+                                        <!-- //Edit -->
+                                        <div class="centerx con-exemple-prompt">
+                                            <!-- :vs-is-valid="validName" -->
 
-                                <vs-prompt @vs-cancel="cancelForm"
-                                    @vs-accept="acceptAlert(data[indextr].id, indextr, data[indextr].jenis_barang)"
-                                     :vs-is-valid="validName" :vs-active.sync="activePrompt2x"
-                                    vs-title="Edit Set Atribut" vs-accept-text="Update">
+                                            <vs-prompt @vs-cancel="cancelForm"
+                                                @vs-accept="acceptAlert(data[indextr].id, indextr, data[indextr].jenis_barang)"
+                                                :vs-is-valid="validName" :vs-active.sync="activePrompt2x"
+                                                vs-title="Edit Set Atribut" vs-accept-text="Update">
 
-                                    <div class="con-exemple-prompt">
-                                        <vs-input label="Nama Set Atribut" placeholder="Nama set atribut"
-                                            v-model="edited_value.nama_set_atribut" name="jenis_barang_new" />
+                                                <div class="con-exemple-prompt">
+                                                    <vs-input label="Nama Set Atribut" placeholder="Nama set atribut"
+                                                        v-model="edited_value.nama_set_atribut" name="jenis_barang_new" />
 
-                                       
+                                                
 
-                                        <vs-alert :vs-active="!validName" color="danger" vs-icon="new_releases">
-                                            Fields can not be empty please enter the data
-                                        </vs-alert>
+                                                    <vs-alert :vs-active="!validName" color="danger" vs-icon="new_releases">
+                                                        Fields can not be empty please enter the data
+                                                    </vs-alert>
+                                                </div>
+                                            </vs-prompt>
+                                        </div>
+
+                                        <!-- Share -->
+                                        <div class="centerx con-exemple-prompt">
+                                            <!-- :vs-is-valid="validName" -->
+                                            <!-- @vs-accept="acceptAlert(data[indextr].id, indextr, data[indextr].jenis_barang)" -->
+                                            <!-- <vs-prompt @vs-cancel="cancelForm2"
+                                                @vs-accept="acceptAlert2(data[indextr].id, indextr, data[indextr].jenis_barang)"
+                                            
+                                                :vs-is-valid="validName" :vs-active.sync="activePrompt3x"
+                                                vs-title="API" vs-accept-text="Copy">
+
+                                                <div class="con-exemple-prompt">
+                                                    <vs-input label="Copy link ini" placeholder="link ..."
+                                                        name="jenis_barang_new" v-model="link" />
+                                                    <button type="button"
+                                                    v-clipboard:copy="link"
+                                                    v-clipboard:success="onCopy"
+                                                    v-clipboard:error="onError">Copy!</button>
+                                                
+
+                                                    <vs-alert :vs-active="!validName" color="danger" vs-icon="new_releases">
+                                                        Fields can not be empty please enter the data
+                                                    </vs-alert>
+                                                </div>
+                                            </vs-prompt> -->
+
+                                            <vs-popup class="holamundo"  title="API" :active.sync="activePrompt3x">
+                                                    <div class="con-exemple-prompt">
+                                                    <vs-input label="Copy link ini" placeholder="link ..."
+                                                        name="link" v-model="link" />
+                                                        <br>
+                                                         <vs-button style="width: 70px" type="gradient" 
+                                                         v-clipboard:copy="link"
+                                                    v-clipboard:success="onCopy"
+                                                    v-clipboard:error="onError"
+                                                         >Copy
+                                                        </vs-button>
+                                                    
+                                                    <!-- <button type="button"
+                                                    v-clipboard:copy="link"
+                                                    v-clipboard:success="onCopy"
+                                                    v-clipboard:error="onError">Copy!</button> -->
+
+                                                     </div>
+                                            </vs-popup>
+                                        </div>
                                     </div>
-                                </vs-prompt>
-                            </div>
-
-                             <div class="centerx con-exemple-prompt">
-                                <!-- :vs-is-valid="validName" -->
-                                  <!-- @vs-accept="acceptAlert(data[indextr].id, indextr, data[indextr].jenis_barang)" -->
-                                <vs-prompt 
-                                  
-                                     :vs-is-valid="validName" :vs-active.sync="activePrompt3x"
-                                    vs-title="API" vs-accept-text="Close">
-
-                                    <div class="con-exemple-prompt">
-                                        <vs-input label="Copy link ini" placeholder="link ..."
-                                             name="jenis_barang_new" v-model="link" />
-
-                                       
-
-                                        <vs-alert :vs-active="!validName" color="danger" vs-icon="new_releases">
-                                            Fields can not be empty please enter the data
-                                        </vs-alert>
-                                    </div>
-                                </vs-prompt>
-                            </div>
-                        </div>
                                 </vs-td>
 
 
@@ -144,6 +170,7 @@
            },
            activePrompt2x:false,
            activePrompt3x:false,
+           link:'',
         }),
         computed:{
             validName() {
@@ -151,6 +178,26 @@
             },
         },
         methods:{
+            onCopy: function (e) {
+
+                this.activePrompt3x = false
+                
+                this.$vs.notify({
+                    color: 'primary',
+                    title: 'Copied !!!',
+                    text: '<div style="color:white">Berhasil di copy :) </div>'
+                })
+      
+    },
+    onError: function (e) {
+     this.activePrompt3x = false
+                
+                this.$vs.notify({
+                    color: 'danger',
+                    title: 'Failed !!!',
+                    text: '<div style="color:white">Gagal di copy :( </div>'
+                })
+    },
             deleteRow(id, index, data) {
                 console.log(id)
                 Vue.swal({
@@ -196,7 +243,7 @@
 
             },
              activePrompt3(index, id) {
-                this.link ='http://ikk.tolisapp.web.id/home/'+id
+                this.link ='https://ikk.tolisapp.web.id/home/'+id
                 this.id_selected = id
                 this.index_selected = index
                 console.log(id, index, this.id_selected, this.index_selected)
@@ -218,6 +265,14 @@
                     text: '<div style="color:white">Ga jadi di edit!</div>'
                 })
             },
+            cancelForm2() {
+                // this.datas_view = Object.assign({}, this.datas_before_edit);
+                this.$vs.notify({
+                    color: 'danger',
+                    title: 'Closed',
+                    text: '<div style="color:white">Ga jadi di copy!</div>'
+                })
+            },
              acceptAlert(id, index, data) {
                 // var a = this.jenis_barang_update(id, index, data)
                 // console.log();
@@ -232,6 +287,22 @@
                     color: 'success',
                     title: 'Updated !!!',
                     text: '<div style="color:white">Data berhasil di update :) </div>',
+                })
+            },
+             acceptAlert2(id, index, data) {
+                // var a = this.jenis_barang_update(id, index, data)
+                // console.log();
+                
+                //  id index id_selected
+                //  console.log(id, this.id_selected, index, this.index_selected);
+                // this.datas_view[this.index_selected].nama_set_atribut = this.edited_value.nama_set_atribut
+               
+                // axios.post('/home/atribut/' + this.id_selected + '/update', this.edited_value)
+
+                this.$vs.notify({
+                    color: 'primary',
+                    title: 'Copied !!!',
+                    text: '<div style="color:white">Berhasil dicopy :) </div>',
                 })
             },
         },
