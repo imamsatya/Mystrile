@@ -41,7 +41,7 @@
 
         <vs-row vs-justify="left">
             <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
-                <vs-card actionable class="cardx">
+                <vs-card  class="cardx">
                     <div slot="header">
                         <br>
                         <h3>
@@ -56,9 +56,17 @@
                             <v-text-field v-model="jasakonstruksi_x" v-validate="'required'" :error-messages="errors.collect('jenisbarang')"
                                 label="Jasa Konstruksi" data-vv-name="jenisbarang" required></v-text-field>
 
+                            <v-select
+                                v-model="select"
+                                v-validate="'required'"
+                                :items="items"
+                                :error-messages="errors.collect('select')"
+                                label="Satuan Unit"
+                                data-vv-name="select"
+                                required
+                                ></v-select>
 
-
-
+                            <br>
                             <v-btn @click="submit" color="success">submit</v-btn>
                             <v-btn @click="clear" color="info">clear</v-btn>
                         </form>
@@ -90,10 +98,8 @@
             kualitasbarang: '',
             select: null,
             items: [
-                'Item 1',
-                'Item 2',
-                'Item 3',
-                'Item 4'
+                'O-H',
+                'Titik',
             ],
             satuanstandar: null,
             merk: null,
@@ -118,7 +124,7 @@
                     },
 
                     select: {
-                        required: 'Select field is required'
+                        required: 'Satuan Unit tidak boleh kosong'
                     }
                 }
             }
@@ -141,9 +147,11 @@
                             'error',
                         );
                     } else {
-                        var _this = this
+                        var _this = this;
+                        console.log(this.select)
                         axios.post(('/home/beranda/' + this.id + '/jasa_konstruksi/create'), {
                                 jasakonstruksi: this.$store.state.jasakonstruksi,
+                                selected: this.select
                             })
 
                             .then(function () {

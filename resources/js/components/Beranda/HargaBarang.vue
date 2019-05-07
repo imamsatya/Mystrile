@@ -63,7 +63,7 @@
                     <vs-td :data="data[indextr].jenis_barang">
                         {{data[indextr].jenis_barang}}
                         <!-- {{tr}} -->
-                        ---
+                      
                      
                     </vs-td>
 

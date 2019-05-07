@@ -135,12 +135,7 @@
                                                     v-clipboard:error="onError"
                                                          >Copy
                                                         </vs-button>
-                                                    
-                                                    <!-- <button type="button"
-                                                    v-clipboard:copy="link"
-                                                    v-clipboard:success="onCopy"
-                                                    v-clipboard:error="onError">Copy!</button> -->
-
+                                                
                                                      </div>
                                             </vs-popup>
                                         </div>

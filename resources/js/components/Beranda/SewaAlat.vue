@@ -57,10 +57,10 @@
                                     <div class="con-exemple-prompt">
                                         <vs-input label="Jenis Barang" placeholder="Jenis Barang"
                                             v-model="edited_value.jenis_barang" name="jenis_barang_new" />
-
+                                    
                                         <vs-input label="Kualitas Barang" placeholder="Kualitas Barang"
                                             v-model="edited_value.kualitas_barang" name="kualitas_barang_new" />
-
+                                        <br>
                                         <vs-alert :vs-active="!validName" color="danger" vs-icon="new_releases">
                                             Fields can not be empty please enter the data
                                         </vs-alert>

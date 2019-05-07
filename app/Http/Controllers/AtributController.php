@@ -262,9 +262,10 @@ class AtributController extends Controller
 
     public function jasa_konstruksi_store(Request $request, $id){
         
-        
+    
         $jasakonstruksi = new JasaKonstruksi;
         $jasakonstruksi->jenis_jasa = $request->input('jasakonstruksi')['jasa_konstruksi'];
+        $jasakonstruksi->satuan_unit = $request->input('selected');
         $jasakonstruksi->set_id = $id;
         $jasakonstruksi->save();
     }
@@ -408,12 +409,13 @@ class AtributController extends Controller
 
     public function jasa_konstruksi_update(Request $request, $id)
     {
-   
+      
         $jasakonstruksis = new JasaKonstruksi;
         $jasakonstruksi = $jasakonstruksis->where('id', $id)->first();
-     
+        
       
         $jasakonstruksi->jenis_jasa = $request->jenis_jasa;
+        $jasakonstruksi->satuan_unit = $request->satuan_unit;
         $jasakonstruksi->save();
         
     }
