@@ -89,7 +89,8 @@
 
                                 <vs-popup class="holamundo"  style="color:rgb(25,112,255)" @vs-close="close" title="Edit Jasa Konstruksi" :active.sync="activePrompt2x">
                                       <div class="con-exemple-prompt">
-                                          <vs-input label="Jenis Barang" placeholder="Jenis Barang"
+                                          <vs-input label="Jasa Konstruksi" placeholder="Jasa Konstruksi" :danger="danger"
+                                              danger-text="Jasa konstruksi tidak boleh kosong"
                                               v-model="edited_value.jenis_jasa" name="jasa_konstruksi_new" />
                                               <br>
                                           
@@ -216,6 +217,7 @@ export default {
         "website": "ambrose.net",
       }
     ],
+    danger:false,
     checkBox3:true,
     switch3:true,
     switch5:true,
@@ -333,7 +335,8 @@ export default {
                 }else{
                   this.edited_value.satuan_unit = "Titik"
                 }
-                this.datas_view[this.index_selected].satuan_unit = this.edited_value.satuan_unit
+                if (this.edited_value.jenis_jasa != '') {
+                   this.datas_view[this.index_selected].satuan_unit = this.edited_value.satuan_unit
                 axios.post('/home/beranda/' + this.id_selected + '/jasa_konstruksi/update', this.edited_value)
                 this.activePrompt2x = false;
                 this.$vs.notify({
@@ -341,6 +344,14 @@ export default {
                     title: 'Updated !!!',
                     text: '<div style="color:white">Data berhasil di update :) </div>',
                 })
+                }else{
+                  this.danger = true,
+                   this.$vs.notify({
+                    color: 'danger',
+                    title: 'Error !!!',
+                    text: '<div style="color:white">Ada error </div>',
+                })
+                }
             },
             close() {
                 this.$vs.notify({

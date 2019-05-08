@@ -623,13 +623,13 @@
                         axios.post('/home/beranda/' + this.id_selected + '/harga_barang/update', this
                                 .edited_value)
 
-                            .then(function () {
+                            // .then(function () {
                                 this.$vs.notify({
                                     color: 'success',
                                     title: 'Updated !!!',
                                     text: '<div style="color:white">Data berhasil di update :) </div>',
                                 })
-                            });
+                            // });
                     }
                 });
 
