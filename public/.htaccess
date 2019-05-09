@@ -64,9 +64,6 @@ BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>
-    RewriteEngine on
-    RewriteCond %{REQUEST_URI} !^public
-    RewriteRule ^(.*)$ public/$1 [L]
 
     RewriteEngine On
 
