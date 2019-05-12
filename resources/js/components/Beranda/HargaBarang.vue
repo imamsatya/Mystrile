@@ -306,27 +306,17 @@
         data: () => ({
 
             //coba edit
-            dialogm1: '',
-            dialog: false,
-
             colorz: '#D81B60',
             // hargabarangs: this.datas,
             satuanstandar_t: null,
             satuansetempat_t: null,
-
-            checkBox3: true,
             switch3: true,
-            switch5: true,
-            switch4: false,
-            switch2: true,
-            datas_view: [],
             datas_view: [],
             datas_before_edit: '',
 
             // edit
             id_selected: '',
             index_selected: '',
-            dialog: false,
             edited_value: {
                 jenis_barang: '',
                 kualitas_barang: '',

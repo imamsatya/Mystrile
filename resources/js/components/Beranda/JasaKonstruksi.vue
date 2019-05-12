@@ -55,37 +55,7 @@
 
             <div>
                             <div class="centerx con-exemple-prompt">
-                                <!-- :vs-is-valid="validName" -->
-
-                                <!-- <vs-prompt @vs-cancel="cancelForm"
-                                    @vs-accept="acceptAlert(data[indextr].id, indextr, data[indextr].jenis_jasa)"
-                                    @vs-close="close" :vs-is-valid="validName" :vs-active.sync="activePrompt2x"
-                                    vs-title="Edit Jasa Konstruksi" vs-accept-text="Update">
-
-                                    <div class="con-exemple-prompt">
-                                        <vs-input label="Jenis Barang" placeholder="Jenis Barang"
-                                            v-model="edited_value.jenis_jasa" name="jasa_konstruksi_new" />
-                                        
-                                        <vs-input label="Satuan Unit" placeholder="Satuan Unit"
-                                            v-model="edited_value.satuan_unit" name="satuan_unit_new" />
-                                              
-                                              
-                                             <vs-select
-                                              class="selectExample"
-                                              label="Satuan Unit"
-                                              v-model="select1"
-                                              >
-                                              
-                                                <vs-select-item :key="index" :value="item.value" :text="item.text" v-for="(item,index) in options1" />
-                                               </vs-select>
-
-                                            
-
-                                        <vs-alert :vs-active="!validName" color="danger" vs-icon="new_releases">
-                                            Fields can not be empty please enter the data
-                                        </vs-alert>
-                                    </div>
-                                </vs-prompt> -->
+                                
 
                                 <vs-popup class="holamundo"  style="color:rgb(25,112,255)" @vs-close="close" title="Edit Jasa Konstruksi" :active.sync="activePrompt2x">
                                       <div class="con-exemple-prompt">
@@ -145,84 +115,9 @@ export default {
         {text:'Titik',value:1},
       ],
     colorz: '#D81B60',
-    users:[
-      {
-        "id": 1,
-        "name": "Leanne Graham",
-        "username": "Bret",
-        "email": "Sincere@april.biz",
-        "website": "hildegard.org",
-      },
-      {
-        "id": 2,
-        "name": "Ervin Howell",
-        "username": "Antonette",
-        "email": "Shanna@melissa.tv",
-        "website": "anastasia.net",
-      },
-      {
-        "id": 3,
-        "name": "Clementine Bauch",
-        "username": "Samantha",
-        "email": "Nathan@yesenia.net",
-        "website": "ramiro.info",
-      },
-      {
-        "id": 4,
-        "name": "Patricia Lebsack",
-        "username": "Karianne",
-        "email": "Julianne.OConner@kory.org",
-        "website": "kale.biz",
-      },
-      {
-        "id": 5,
-        "name": "Chelsey Dietrich",
-        "username": "Kamren",
-        "email": "Lucio_Hettinger@annie.ca",
-        "website": "demarco.info",
-      },
-      {
-        "id": 6,
-        "name": "Mrs. Dennis Schulist",
-        "username": "Leopoldo_Corkery",
-        "email": "Karley_Dach@jasper.info",
-        "website": "ola.org",
-      },
-      {
-        "id": 7,
-        "name": "Kurtis Weissnat",
-        "username": "Elwyn.Skiles",
-        "email": "Telly.Hoeger@billy.biz",
-        "website": "elvis.io",
-      },
-      {
-        "id": 8,
-        "name": "Nicholas Runolfsdottir V",
-        "username": "Maxime_Nienow",
-        "email": "Sherwood@rosamond.me",
-        "website": "jacynthe.com",
-      },
-      {
-        "id": 9,
-        "name": "Glenna Reichert",
-        "username": "Delphine",
-        "email": "Chaim_McDermott@dana.io",
-        "website": "conrad.com",
-      },
-      {
-        "id": 10,
-        "name": "Clementina DuBuque",
-        "username": "Moriah.Stanton",
-        "email": "Rey.Padberg@karina.biz",
-        "website": "ambrose.net",
-      }
-    ],
     danger:false,
     checkBox3:true,
-    switch3:true,
-    switch5:true,
-    switch4:false,
-    switch2:true,
+    
     datas_view:[],
      datas_before_edit: '',
 
