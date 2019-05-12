@@ -31,17 +31,7 @@
             <vs-row vs-justify="left">
                 <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
                     <vs-card actionable class="cardx">
-                        <!-- <div slot="header">
-                            <br>
-                            <h3>
-                                Daftar Atribut
-                            </h3>
-                            <br>
-
-                            <hr>
-                        </div> -->
-
-
+            
                         <vs-tabs color="danger">
                             <vs-tab vs-label="Harga Barang" vs-icon="monetization_on">
                                 <div class="con-tab-ejemplo">

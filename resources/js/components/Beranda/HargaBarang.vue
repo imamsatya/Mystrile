@@ -169,19 +169,7 @@
                             @click="deleteRow(data[indextr].id, indextr, tr)"></vs-button>
                         <div>
                             <div class="centerx con-exemple-prompt">
-                                <!-- :vs-is-valid="validName" -->
 
-                                <!-- <vs-prompt @vs-cancel="cancelForm"
-                                    @vs-accept="acceptAlert(data[indextr].id, indextr, data[indextr].jenis_barang)"
-                                    @vs-close="close" :vs-is-valid="validName" :vs-active.sync="activePrompt2x"
-                                    vs-title="Edit Sewa Alat" vs-accept-text="Update">
-
-                                    <div class="con-exemple-prompt">
-                                       
-                                    </div>
-                                </vs-prompt> -->
-
-                                <!-- popup -->
                                 <vs-popup title="Edit Harga Barang" :active.sync="activePrompt2x"
                                     style="color:rgb(25,112,255)" @vs-close="close">
                                    
@@ -266,10 +254,7 @@
 
                                             <vs-button style="width: 70px" type="gradient" >Update
                                             </vs-button>
-                                            <!-- <vs-button style="width: 70px" type="gradient">clear</vs-button> -->
-
-                                            <!-- <v-btn @click="submit" color="success">submit</v-btn>
-                            <v-btn @click="clear" color="info">clear</v-btn> -->
+                                          
                                         </form>
                                     </v-app>
                                 </vs-popup>
