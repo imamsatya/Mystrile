@@ -101,28 +101,7 @@
 
                                         <!-- Share -->
                                         <div class="centerx con-exemple-prompt">
-                                            <!-- :vs-is-valid="validName" -->
-                                            <!-- @vs-accept="acceptAlert(data[indextr].id, indextr, data[indextr].jenis_barang)" -->
-                                            <!-- <vs-prompt @vs-cancel="cancelForm2"
-                                                @vs-accept="acceptAlert2(data[indextr].id, indextr, data[indextr].jenis_barang)"
-                                            
-                                                :vs-is-valid="validName" :vs-active.sync="activePrompt3x"
-                                                vs-title="API" vs-accept-text="Copy">
-
-                                                <div class="con-exemple-prompt">
-                                                    <vs-input label="Copy link ini" placeholder="link ..."
-                                                        name="jenis_barang_new" v-model="link" />
-                                                    <button type="button"
-                                                    v-clipboard:copy="link"
-                                                    v-clipboard:success="onCopy"
-                                                    v-clipboard:error="onError">Copy!</button>
-                                                
-
-                                                    <vs-alert :vs-active="!validName" color="danger" vs-icon="new_releases">
-                                                        Fields can not be empty please enter the data
-                                                    </vs-alert>
-                                                </div>
-                                            </vs-prompt> -->
+                                           
 
                                             <vs-popup class="holamundo"  title="API" :active.sync="activePrompt3x" style="color:rgb(25,112,255)">
                                                     <div class="con-exemple-prompt">
