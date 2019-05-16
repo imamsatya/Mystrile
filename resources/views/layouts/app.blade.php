@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="{{ asset('MystrileV1_1.webp') }}">
 
     <!-- Scripts -->
-    <link rel="preload" href="{{ asset('css/app.css') }}" as="style" >
+    {{-- <link rel="preload" href="{{ asset('css/app.css') }}" as="style" > --}}
   <link rel="preload" href="{{ asset('js/app.js') }}" as="script">
     
 
