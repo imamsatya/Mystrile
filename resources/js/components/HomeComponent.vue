@@ -103,7 +103,7 @@
                                         <div class="centerx con-exemple-prompt">
                                            
 
-                                            <vs-popup class="holamundo"  title="API" :active.sync="activePrompt3x" style="color:rgb(25,112,255)">
+                                            <vs-popup class="holamundo"  title=" REST API" :active.sync="activePrompt3x" style="color:rgb(25,112,255)">
                                                     <div class="con-exemple-prompt">
                                                     <vs-input label="Copy link ini" placeholder="link ..."
                                                         name="link" v-model="link" />
