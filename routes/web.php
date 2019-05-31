@@ -12,9 +12,9 @@ use Illuminate\Http\Request;
 */
 
 // Auth::routes();
-Route::get('/ceka', function () {
-    return view('a');
-});
+// Route::get('/ceka', function () {
+//     return view('a');
+// });
 
 
 // Route::get('/', function () {
