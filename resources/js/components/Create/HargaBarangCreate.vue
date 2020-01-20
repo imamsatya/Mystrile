@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="animated fadeIn">
         <br>
 
         <vs-row vs-justify="left">
@@ -16,8 +16,8 @@
                                         
                                         },
                                         {
-                                          title: 'Beranda',
-                                          url: '/home/beranda/'+this.id,
+                                          title: 'Atribut',
+                                          url: '/home/atribut/'+this.id,
                                           
                                         },
                                         {
@@ -27,7 +27,7 @@
                                         },
                                         {
                                           title: 'Create',
-                                          url: '/home/beranda',
+                                          url: '/home/atribut',
                                           active: true
                                           
                                         },
@@ -69,7 +69,7 @@
 
 
                             <v-checkbox v-model="merk_x" color="blue"  
-                                value="1" label="Merk"  type="checkbox" class="ma-0 pa-0"></v-checkbox>
+                                value="1" label="Merek"  type="checkbox" class="ma-0 pa-0"></v-checkbox>
 
                                 
                             <v-checkbox v-model="satuansetempat_t" color="blue"  :error-messages="errors.collect('satuansetempat')"  
@@ -209,7 +209,7 @@
                         );
                     } else {
                         var _this = this
-                        axios.post(('/home/beranda/' + this.id + '/harga_barang/create'), {
+                        axios.post(('/home/atribut/' + this.id + '/harga_barang/create'), {
                                 hargabarang: this.$store.state.hargabarang,
                             })
 
@@ -221,8 +221,8 @@
                                     timer: 5000,
                                     confirmButtonText: 'Ok'
                                 }).then(function () {
-                                    // axios.get(('/home/beranda/' + this.id))
-                                    window.location.href = '/home/beranda/' + _this.id;
+                                    // axios.get(('/home/atribut/' + this.id))
+                                    window.location.href = '/home/atribut/' + _this.id;
                                 })
                             });
                     }
@@ -266,64 +266,65 @@
                 }
             },
             merk_x: {
-                set() {
-                    this.$store.state.hargabarang.merk = true
+                set(val) {
+                    this.$store.state.hargabarang.merk = val
                 },
                 get() {
                     return this.$store.state.hargabarang.merk
                 }
             },
             hargasetempat_x: {
-                set() {
-                    this.$store.state.hargabarang.harga_setempat = true
+                set(val) {
+                    this.$store.state.hargabarang.harga_setempat = val
                 },
                 get() {
                     return this.$store.state.hargabarang.harga_setempat
                 }
             },
             hargastandar_x: {
-                set() {
-                    this.$store.state.hargabarang.harga_standar = true
+                set(val) {
+                    this.$store.state.hargabarang.harga_standar = val
                 },
                 get() {
                     return this.$store.state.hargabarang.harga_standar
                 }
             },
             panjang_x: {
-                set() {
-                    this.$store.state.hargabarang.panjang = true
+                set(val) {
+                  
+                    this.$store.state.hargabarang.panjang = val
                 },
                 get() {
                     return this.$store.state.hargabarang.panjang
                 }
             },
             lebar_x: {
-                set() {
-                    this.$store.state.hargabarang.lebar = true
+                set(val) {
+                    this.$store.state.hargabarang.lebar = val
                 },
                 get() {
                     return this.$store.state.hargabarang.lebar
                 }
             },
             tinggi_x: {
-                set() {
-                    this.$store.state.hargabarang.tinggi = true
+                set(val) {
+                    this.$store.state.hargabarang.tinggi = val
                 },
                 get() {
                     return this.$store.state.hargabarang.tinggi
                 }
             },
             berat_x: {
-                set() {
-                    this.$store.state.hargabarang.berat = true
+                set(val) {
+                    this.$store.state.hargabarang.berat = val
                 },
                 get() {
                     return this.$store.state.hargabarang.berat
                 }
             },
             konversi_x: {
-                set() {
-                    this.$store.state.hargabarang.konversi = true
+                set(val) {
+                    this.$store.state.hargabarang.konversi = val
                 },
                 get() {
                     return this.$store.state.hargabarang.konversi

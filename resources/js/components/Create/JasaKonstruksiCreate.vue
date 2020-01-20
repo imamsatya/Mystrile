@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="animated fadeIn">
         <br>
 
         <vs-row vs-justify="left">
@@ -16,8 +16,8 @@
                                         
                                         },
                                         {
-                                          title: 'Beranda',
-                                          url: '/home/beranda',
+                                          title: 'Atribut',
+                                          url: '/home/atribut/'+this.id,
                                           
                                         },
                                         {
@@ -27,7 +27,7 @@
                                         },
                                         {
                                           title: 'Create',
-                                          url: '/home/beranda',
+                                          url: '/home/atribut',
                                           active: true
                                           
                                         },
@@ -149,7 +149,7 @@
                     } else {
                         var _this = this;
                         console.log(this.select)
-                        axios.post(('/home/beranda/' + this.id + '/jasa_konstruksi/create'), {
+                        axios.post(('/home/atribut/' + this.id + '/jasa_konstruksi/create'), {
                                 jasakonstruksi: this.$store.state.jasakonstruksi,
                                 selected: this.select
                             })
@@ -162,8 +162,8 @@
                                     timer: 5000,
                                     confirmButtonText: 'Ok'
                                 }).then(function () {
-                                    // axios.get(('/home/beranda/' + this.id))
-                                    window.location.href = '/home/beranda/' + _this.id;
+                                    // axios.get(('/home/atribut/' + this.id))
+                                    window.location.href = '/home/atribut/' + _this.id;
                                 })
                             });
                     }

@@ -101,3 +101,4 @@ use Illuminate\Http\Request;
 //         ]
 //     ]);
 // });
+Route::any('/home/{id}', 'AtributController@share')->name('masadit');

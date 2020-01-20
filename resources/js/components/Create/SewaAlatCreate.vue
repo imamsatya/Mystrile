@@ -1,5 +1,5 @@
 <template>
-    <div> <br>
+    <div class="animated fadeIn"> <br>
 
         <vs-row vs-justify="left">
             <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="12">
@@ -15,8 +15,8 @@
                                         
                                         },
                                         {
-                                          title: 'Beranda',
-                                          url: '/home/beranda',
+                                          title: 'Atribut',
+                                          url: '/home/atribut/'+this.id,
                                           
                                         },
                                         {
@@ -26,7 +26,7 @@
                                         },
                                         {
                                           title: 'Create',
-                                          url: '/home/beranda',
+                                          url: '/home/atribut',
                                           active: true
                                           
                                         },
@@ -141,7 +141,7 @@
                         );
                     } else {
                         var _this = this
-                        axios.post(('/home/beranda/' + this.id + '/sewa_alat/create'), {
+                        axios.post(('/home/atribut/' + this.id + '/sewa_alat/create'), {
                                 sewaalat: this.$store.state.sewaalat,
                             })
 
@@ -154,7 +154,7 @@
                                     confirmButtonText: 'Ok'
                                 }).then(function () {
                                     // axios.get(('/home/beranda/' + this.id))
-                                    window.location.href = '/home/beranda/' + _this.id;
+                                    window.location.href = '/home/atribut/' + _this.id;
                                 })
                             });
                     }

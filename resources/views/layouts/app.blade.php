@@ -1,3 +1,17 @@
+<!--
+=====================================================================================================
+============================== Halooo !!! ngintip aja bro ================================================
+==========================================================================================================
+
+NYARI APA NIH? HEHE...
+SELAMAT MENCARI SESUATU YANG DICARI :D
+
+IT'S ONLY WITH THE HEART THAT ONE CAN SEE RIGHTLY , WHAT IS ESSENTIAL IS INVISIBLE TO THE EYE
+
+==========================================================================================================
+==========================================================================================================
+=======================================================================================================
+-->
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 {{-- <html> --}}
@@ -33,6 +47,10 @@
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons-wind.min.css" />
 <link rel="dns-prefetch" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
 <link rel="dns-prefetch" href="https://afeld.github.io/emoji-css/emoji.css" />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  
 
 </head>
 <body>

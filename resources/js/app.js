@@ -49,6 +49,9 @@ Vue.use(VueClipboard)
 // import VueResource from 'vue-resource';
 // Vue.use(VueResource)
 
+// import VueSticker from 'vue-sticker'
+// Vue.use(VueSticker)
+
 window.axios = require('axios');
 
 
@@ -64,10 +67,12 @@ import { store } from './store/store'
 //Auth
 // import Login from './components/Auth/Login.vue'
 
+//testing transition
 
 //UI
 import Drawer from './components/UI/Drawer.vue'
 
+import Import from './components/Import.vue'
 import About from './components/About.vue'
 
 import Footer from './components/FooterComponent.vue'
@@ -153,6 +158,7 @@ window.Vue.component('beranda-c', Beranda)
  */
 
 window.Vue.component('about-c', About)
+window.Vue.component('import-c', Import)
  
 //  import Router from './routes.js'
 //  import Auth from './pacakages/auth/Auth.js'

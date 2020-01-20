@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="animated fadeIn">
         <div>
             <br>
 
@@ -18,7 +18,7 @@
                                         },
                                         {
                                           title: this.setatributs[0].nama_set_atribut,
-                                          url: '/home/beranda'+this.id,
+                                          url: '/home/atribut'+this.id,
                                           active: true,
                                         },
                                       ]">

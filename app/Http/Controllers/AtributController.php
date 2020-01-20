@@ -17,6 +17,8 @@ use DOMDocument;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
+use Response;
+
 class AtributController extends Controller
 {
     /**
@@ -37,7 +39,7 @@ class AtributController extends Controller
     public function cek(Request $request)
     {
          require "classes/communitybps.php";
-        // $communitybps = new CommunityBPS('bps7206', 'olimas205');
+        // $communitybps = new CommunityBPS('bps7206', 'blablabla');
 
          $communitybps = new CommunityBPS($request->input('account')['username'], $request->input('account')['password']);
 
@@ -184,7 +186,7 @@ class AtributController extends Controller
         $hargabarang->satuan_standar = 'tanpa satuan standar';   
        }
        
-       if ($request->input('hargabarang')['merk']) {
+       if ($request->input('hargabarang')['merk'] == 1) {
         $hargabarang->merk = 'bermerk';
        }else{
         $hargabarang->merk = 'tanpa merk';   
@@ -197,45 +199,46 @@ class AtributController extends Controller
        }
 
        //ukuran satuan setempat
-       if ($request->input('hargabarang')['panjang']) {
+      
+       if ($request->input('hargabarang')['panjang'] == 1) {
         $hargabarang->ukuran_panjang = 'panjang';
        }else{
         $hargabarang->ukuran_panjang = 'tanpa panjang';   
        }
        
 
-       if ($request->input('hargabarang')['lebar']) {
+       if ($request->input('hargabarang')['lebar'] == 1 ) {
         $hargabarang->ukuran_lebar = 'lebar';
        }else{
         $hargabarang->ukuran_lebar = 'tanpa lebar';   
        }
        
-       if ($request->input('hargabarang')['tinggi']) {
+       if ($request->input('hargabarang')['tinggi'] == 1 ) {
         $hargabarang->ukuran_tinggi = 'tinggi';
        }else{
         $hargabarang->ukuran_tinggi = 'tanpa tinggi';   
        }
 
-       if ($request->input('hargabarang')['berat']) {
+       if ($request->input('hargabarang')['berat'] == 1) {
         $hargabarang->ukuran_berat = 'berat';
        }else{
         $hargabarang->ukuran_berat = 'tanpa berat';   
        }
 
-       if ($request->input('hargabarang')['konversi']) {
+       if ($request->input('hargabarang')['konversi'] == 1) {
         $hargabarang->konversi_satuan_setempat = 'konversi';
        }else{
         $hargabarang->konversi_satuan_setempat = 'tanpa konversi';   
        }
        
 
-       if ($request->input('hargabarang')['harga_setempat']) {
+       if ($request->input('hargabarang')['harga_setempat'] == 1) {
         $hargabarang->harga_satuan_setempat = 'harga satuan setempat';
        }else{
         $hargabarang->harga_satuan_setempat = 'tanpa harga satuan setempat';   
        }
        
-       if ($request->input('hargabarang')['harga_standar']) {
+       if ($request->input('hargabarang')['harga_standar'] == 1) {
         $hargabarang->harga_satuan_standar = 'harga satuan standar';
        }else{
         $hargabarang->harga_satuan_standar = 'tanpa harga satuan standar';   
@@ -585,7 +588,7 @@ class AtributController extends Controller
         ]);
 
         foreach ($hargabarang as $key => $value) {
-            if ($value->merk = 'bermerk') {
+            if ($value->merk == 'bermerk') {
                 $value->merk = true;
             } else {
                 $value->merk = false;
@@ -657,8 +660,25 @@ class AtributController extends Controller
         ]);
         // dd($metadata3);
         // return View('Home.tes', compact('hargabarang', 'sewaalat', 'jasakonstruksi', 'setatribut'));
-        return View('Home.tes', compact('metadata'));
+        // return View('Home.tes', compact('metadata'));
+        return response()->json($metadata); 
         // return View()
+    }
+
+    public function getDownload(){
+        //PDF file is stored under project/public/download/info.pdf
+        $file="./download/Tutorial.pdf";
+        return Response::download($file);
+    }
+
+    public function import_create(){
+   
+            $user = Auth::user();
+        return View('importx', compact('user'));
+    }
+
+    public function import_store(Request $request){
+        dd($request);
     }
 
     

@@ -1,21 +1,22 @@
 <template>
   <div>
       <br>
-      <vs-button type="gradient" color="danger" :href="'/home/beranda/'+id+'/jasa_konstruksi/create'">Tambah Jasa</vs-button>
+      <vs-button type="gradient" color="danger" :href="'/home/atribut/'+id+'/jasa_konstruksi/create'">Tambah Jasa</vs-button>
       <br>
      
-    <vs-table :data="datas_view" max-items="10" pagination search>
+    <vs-table :sst="true" :data="datas_view" max-items="10" pagination search stripe v-model="selected" @selected="handleSelected"
+      >
       <template slot="header">
         <h3>
           Jasa Konstruksi
         </h3>
       </template>
       <template slot="thead">
-        <vs-th style="font-size: 14px">
+        <vs-th style="font-size: 14px" sort-key="jenis_jasa">
           Jasa Konstruksi
         </vs-th>
 
-        <vs-th style="font-size: 14px">
+        <vs-th style="font-size: 14px" sort-key="satuan_unit">
           Satuan Unit
         </vs-th>
        
@@ -27,7 +28,7 @@
 
       <template slot-scope="{data}">
         <!-- <vs-tr :state="indextr == 2 || indextr == 5?'success':indextr == 6?'danger':null" :key="indextr" v-for="(tr, indextr) in data" > -->
-            <vs-tr :key="indextr" v-for="(tr, indextr) in data">
+            <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
           <vs-td :data="data[indextr].jenis_jasa">
             {{data[indextr].jenis_jasa}}
            
@@ -46,7 +47,7 @@
           
 
           <vs-td :data="data[indextr].id">
-           <!-- <vs-button color="primary" type="line" icon="visibility" size="small" href="/home/beranda"></vs-button> -->
+           <!-- <vs-button color="primary" type="line" icon="visibility" size="small" href="/home/atribut"></vs-button> -->
            <vs-button color="success" type="line" icon="create" size="small" @click="activePrompt2(indextr, data[indextr].id)"></vs-button>
 
 
@@ -117,7 +118,7 @@ export default {
     colorz: '#D81B60',
     danger:false,
     checkBox3:true,
-    
+     selected:[],
     datas_view:[],
      datas_before_edit: '',
 
@@ -138,6 +139,13 @@ export default {
             },
   },
   methods: {
+     handleSelected(tr) {
+                this.$vs.notify({
+                    title:`${tr.jenis_jasa}`,
+                    text:`<div style="color:white"> Satuan Unit : ${tr.satuan_unit} </div>`
+                })
+             }
+             ,
      deleteRow(id, index, data) {
                 console.log(id)
                 for (let index = 0; index < this.datas_view.length; index++) {
@@ -158,7 +166,7 @@ export default {
                         const idx = this.datas_view.indexOf(data)
                     console.log(data)
                     
-                    axios.delete('/home/beranda/' + id + '/jasa_konstruksi/delete')
+                    axios.delete('/home/atribut/' + id + '/jasa_konstruksi/delete')
                     .then(this.datas_view.splice(index, 1));
                     // .then(Vue.delete(this.datas, idx))
                     // this.$emit('Deleted');
@@ -232,7 +240,7 @@ export default {
                 }
                 if (this.edited_value.jenis_jasa != '') {
                    this.datas_view[this.index_selected].satuan_unit = this.edited_value.satuan_unit
-                axios.post('/home/beranda/' + this.id_selected + '/jasa_konstruksi/update', this.edited_value)
+                axios.post('/home/atribut/' + this.id_selected + '/jasa_konstruksi/update', this.edited_value)
                 this.activePrompt2x = false;
                 this.$vs.notify({
                     color: 'success',

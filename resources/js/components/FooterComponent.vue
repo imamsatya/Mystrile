@@ -17,7 +17,7 @@
       <v-card-text class="white--text pt-0">
         <p></p>
         <p class="white--text pt-0"> Luaskan ilmu, luaskan manfaat <br>
-        [ ] dengan &hearts; di Toli-toli</p>
+        [ ] dengan <span class="animated infinite fadeIn"> ❤ </span>  di Toli-toli</p>
         
       </v-card-text>
 

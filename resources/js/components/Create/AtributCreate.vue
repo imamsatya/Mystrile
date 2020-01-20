@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="animated fadeIn">
         <br>
 
         <vs-row vs-justify="left">
@@ -23,7 +23,7 @@
                                        
                                         {
                                           title: 'Create',
-                                          url: '/home/beranda',
+                                          url: '/home/atribut',
                                           active: true
                                           
                                         },

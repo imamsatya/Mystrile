@@ -2,11 +2,12 @@
     <div>
         <br>
 
-        <vs-button type="gradient" color="danger" :href="'/home/beranda/'+id+'/harga_barang/create'">Tambah Harga Barang
+        <vs-button type="gradient" color="danger" :href="'/home/atribut/'+id+'/harga_barang/create'">Tambah Harga Barang
         </vs-button>
         <!-- {{datas_view}} -->
         <br>
-        <vs-table :data="datas_view" max-items="10" pagination search>
+        <vs-table :sst="true" :data="datas_view" max-items="10" pagination search stripe  v-model="selected" @selected="handleSelected"
+      >
             <template slot="header">
                 <h3>
                     Harga Barang
@@ -14,40 +15,40 @@
             </template>
 
             <template slot="thead">
-                <vs-th style="font-size: 14px">
+                <vs-th style="font-size: 14px" sort-key="jenis_barang" >
                     Jenis Barang
                 </vs-th>
-                <vs-th style="font-size: 14px">
+                <vs-th style="font-size: 14px" sort-key="kualitas_barang">
                     Kualitas Barang
                 </vs-th>
-                <vs-th style="font-size: 14px">
+                <vs-th style="font-size: 14px" sort-key="satuan_standar">
                     Satuan Standar
                 </vs-th>
-                <vs-th style="font-size: 14px">
-                    Merk
+                <vs-th style="font-size: 14px" sort-key="merk">
+                    Merek
                 </vs-th>
-                <vs-th style="font-size: 14px">
+                <vs-th style="font-size: 14px" sort-key="satuan_setempat"> 
                     Satuan Setempat
                 </vs-th>
-                <vs-th style="font-size: 14px">
+                <vs-th style="font-size: 14px" sort-key="ukuran_panjang">
                     Panjang
                 </vs-th>
-                <vs-th style="font-size: 14px">
+                <vs-th style="font-size: 14px" sort-key="ukuran_lebar">
                     Lebar
                 </vs-th>
-                <vs-th style="font-size: 14px">
+                <vs-th style="font-size: 14px" sort-key="ukuran_tinggi">
                     Tinggi
                 </vs-th>
-                <vs-th style="font-size: 14px">
+                <vs-th style="font-size: 14px" sort-key="ukuran_berat">
                     Berat
                 </vs-th>
-                <vs-th style="font-size: 14px">
+                <vs-th style="font-size: 14px" sort-key="konversi_satuan_setempat">
                     Konversi
                 </vs-th>
-                <vs-th style="font-size: 14px">
+                <vs-th style="font-size: 14px" sort-key="harga_satuan_setempat">
                     Harga per Satuan Setempat
                 </vs-th>
-                <vs-th style="font-size: 14px">
+                <vs-th style="font-size: 14px" sort-key="harga_satuan_standar">
                     Harga per Satuan Standar
                 </vs-th>
                 <vs-th style="font-size: 14px">
@@ -59,7 +60,7 @@
             <template slot-scope="{data}">
                 <!-- <vs-tr :state="indextr == 2 || indextr == 5?'success':indextr == 6?'danger':null" :key="indextr" v-for="(tr, indextr) in data" > -->
             
-                <vs-tr :key="indextr" v-for="(tr, indextr) in data">
+                <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
                     <vs-td :data="data[indextr].jenis_barang">
                         {{data[indextr].jenis_barang}}
                         <!-- {{tr}} -->
@@ -80,7 +81,11 @@
                     </vs-td>
 
                     <vs-td :data="data[indextr].merk">
-                        <label for="">{{data[indextr].merk}}</label>
+                        <!-- <label for="" >{{data[indextr].merk}}</label> -->
+
+                        <label for=""  v-if="data[indextr].merk != 'tanpa merk'" > bermerek </label>
+                        <label for=""  v-if="data[indextr].merk == 'tanpa merk'" > tanpa merek </label>
+
                         <vs-switch color="success" v-if="data[indextr].merk != 'tanpa merk'" disabled="true"
                             v-model="switch3" />
                         <vs-switch color="danger" v-if="data[indextr].merk == 'tanpa merk'" disabled="true"
@@ -161,7 +166,7 @@
 
 
                     <vs-td :data="data[indextr].id">
-                        <!-- <vs-button color="primary" type="line" icon="visibility" size="small" href="/home/beranda"></vs-button> -->
+                        <!-- <vs-button color="primary" type="line" icon="visibility" size="small" href="/home/atribut"></vs-button> -->
                         <vs-button color="success" type="line" icon="create" size="small"
                             @click="activePrompt2(indextr, data[indextr].id)"></vs-button>
                         <!-- <vs-button color="warning" type="line" icon="launch" size="small"></vs-button> -->
@@ -198,7 +203,7 @@
 
 
                                             <v-checkbox color="blue" v-model="edited_value.merk" input-value="true"
-                                                value label="Merk" type="checkbox" class="ma-0 pa-0"></v-checkbox>
+                                                value label="Merek" type="checkbox" class="ma-0 pa-0"></v-checkbox>
 
 
                                             <v-checkbox v-model="satuansetempat_t" color="blue"
@@ -298,7 +303,7 @@
             switch3: true,
             datas_view: [],
             datas_before_edit: '',
-
+            selected:[],
             // edit
             id_selected: '',
             index_selected: '',
@@ -361,6 +366,15 @@
         },
 
         methods: {
+             handleSelected(tr) {
+                this.$vs.notify({
+                    title:`${tr.jenis_barang}`,
+                    text:`<div style="color:white"> Kualitas Barang : ${tr.kualitas_barang} </div>`
+                })
+             }
+             ,
+
+          
             close() {
                 this.$vs.notify({
                     color: 'danger',
@@ -388,7 +402,7 @@
                         const idx = this.datas_view.indexOf(data)
                         console.log(data)
 
-                        axios.delete('/home/beranda/' + id + '/harga_barang/delete')
+                        axios.delete('/home/atribut/' + id + '/harga_barang/delete')
                             .then(this.datas_view.splice(index, 1));
                         // .then(Vue.delete(this.datas, idx))
                         // this.$emit('Deleted');
@@ -595,7 +609,7 @@
                         );
                     } else {
                         var _this = this
-                        axios.post('/home/beranda/' + this.id_selected + '/harga_barang/update', this
+                        axios.post('/home/atribut/' + this.id_selected + '/harga_barang/update', this
                                 .edited_value)
 
                             // .then(function () {
